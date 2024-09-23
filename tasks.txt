@@ -1,0 +1,3 @@
+rename from received to receiver in interface INotification
+make context and hook for socket
+If user is online, show online bar in user

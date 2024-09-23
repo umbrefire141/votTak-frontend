@@ -1,8 +1,8 @@
 import chatService from '@/shared/api/chat/chat.service';
+import AvatarWithUserInfo from '@/shared/components/AvatarWithUserInfo/AvatarWithUserInfo';
 import { useSocket } from '@/shared/hooks/useSocket';
 import { useUserStore } from '@/shared/model/user.store';
 import { IMessage } from '@/shared/types/Chat.interface';
-import AvatarWithUserInfo from '@/shared/ui/AvatarWithUserInfo/AvatarWithUserInfo';
 import { formatName } from '@/shared/utils/formatName';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';

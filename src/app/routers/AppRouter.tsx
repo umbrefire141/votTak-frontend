@@ -1,7 +1,8 @@
 import {
+	routerAuth,
 	routersWithAuthorization,
-	routerWithoutAuthorization,
 } from '@/shared/consts/router.const';
+import AuthLayout from '@/widgets/AuthLayout/AuthLayout';
 import Layout from '@/widgets/layout/Layout';
 import { Route, Routes } from 'react-router-dom';
 
@@ -17,9 +18,15 @@ export default function AppRouter() {
 					/>
 				))}
 			</Route>
-			{routerWithoutAuthorization.map(router => (
-				<Route key={router.path} path={router.path} element={router.element} />
-			))}
+			<Route element={<AuthLayout />}>
+				{routerAuth.map(router => (
+					<Route
+						key={router.path}
+						path={router.path}
+						element={router.element}
+					/>
+				))}
+			</Route>
 		</Routes>
 	);
 }

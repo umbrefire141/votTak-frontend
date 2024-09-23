@@ -8,7 +8,7 @@ const LogoutButton = () => {
 
 	const handleLogout = () => {
 		logout();
-		navigate('/sign-in');
+		navigate('/auth/sign-in');
 	};
 
 	return (

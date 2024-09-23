@@ -1,4 +1,4 @@
-import AvatarWithUserInfo from '@/shared/ui/AvatarWithUserInfo/AvatarWithUserInfo';
+import AvatarWithUserInfo from '@/shared/components/AvatarWithUserInfo/AvatarWithUserInfo';
 import Actions from '../../Actions/Actions';
 import Images from '../../Images/Images';
 

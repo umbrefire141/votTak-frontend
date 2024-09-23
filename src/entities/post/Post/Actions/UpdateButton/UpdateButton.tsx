@@ -4,6 +4,8 @@ import { BiPencil } from 'react-icons/bi';
 import { IUpdateButtonComponent } from './UpdateButton.interface';
 
 const UpdateButton = ({ uuid }: IUpdateButtonComponent) => {
+	console.log(uuid);
+
 	return (
 		<DropdownMenuItem className="p-0">
 			<Button variant="ghost" size="sm">

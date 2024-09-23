@@ -1,4 +1,4 @@
-import AvatarWithUserInfo from '@/shared/ui/AvatarWithUserInfo/AvatarWithUserInfo';
+import AvatarWithUserInfo from '@/shared/components/AvatarWithUserInfo/AvatarWithUserInfo';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card';
 import { formatName } from '@/shared/utils/formatName';
 import { Link } from 'react-router-dom';
@@ -18,7 +18,7 @@ const Friends = ({ friends }: IFriendsComponent) => {
 						className="flex flex-col items-center gap-2"
 					>
 						<AvatarWithUserInfo
-							avatarSrc={friend.user.avatar.photo.image}
+							avatarSrc={friend?.user?.avatar?.photo.image}
 							fullName={formatName(friend.user.firstname, friend.user.lastname)}
 							direction="column"
 							sizeTitle="base"

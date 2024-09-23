@@ -1,5 +1,5 @@
 import { useUserStore } from '@/shared/model/user.store';
-import { loginFormSchema } from '@/shared/schemas/login.schema';
+import { registrationSchemaForm } from '@/shared/schemas/registration.schema';
 import { Button } from '@/shared/ui/button';
 import {
 	Form,
@@ -16,20 +16,24 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 
-const AuthLoginForm = () => {
-	const form = useForm<z.infer<typeof loginFormSchema>>({
+const AuthRegistrationForm = () => {
+	const form = useForm<z.infer<typeof registrationSchemaForm>>({
 		defaultValues: {
 			email: '',
+			nickname: '',
+			firstname: '',
+			lastname: '',
 			password: '',
 			confirmedPassword: '',
 		},
-		resolver: zodResolver(loginFormSchema),
+		resolver: zodResolver(registrationSchemaForm),
 	});
 	const [isNotEqualPassword, setIsNotEqualPassword] = useState<boolean>(false);
-	const { signIn, error } = useUserStore();
+	const { signUp, error } = useUserStore();
 	const navigate = useNavigate();
 
-	async function onSubmit(values: z.infer<typeof loginFormSchema>) {
+	// 2. Define a submit handler.
+	function onSubmit(values: z.infer<typeof registrationSchemaForm>) {
 		const { password, confirmedPassword } = form.getValues();
 
 		if (password !== confirmedPassword) {
@@ -39,12 +43,12 @@ const AuthLoginForm = () => {
 
 		navigate('/');
 		setIsNotEqualPassword(false);
-		signIn(values);
+		signUp(values);
 	}
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
 				<FormField
 					control={form.control}
 					name="email"
@@ -60,12 +64,51 @@ const AuthLoginForm = () => {
 				/>
 				<FormField
 					control={form.control}
+					name="nickname"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Nickname</FormLabel>
+							<FormControl>
+								<Input placeholder="nickname" {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={form.control}
+					name="firstname"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Firstname</FormLabel>
+							<FormControl>
+								<Input placeholder="Firstname" {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={form.control}
+					name="lastname"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Lastname</FormLabel>
+							<FormControl>
+								<Input placeholder="Lastname" {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={form.control}
 					name="password"
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>Password</FormLabel>
 							<FormControl>
-								<Input type="password" placeholder="password" {...field} />
+								<Input type="password" placeholder="Password" {...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -80,7 +123,7 @@ const AuthLoginForm = () => {
 							<FormControl>
 								<Input
 									type="password"
-									placeholder="confirm password"
+									placeholder="Confirm password"
 									{...field}
 								/>
 							</FormControl>
@@ -96,18 +139,18 @@ const AuthLoginForm = () => {
 				{error && (
 					<p className="text-base font-medium text-destructive">{error}</p>
 				)}
-				<Button type="submit" className="w-full max-w-28 mr-3">
-					Sign in
+				<Button type="submit" className="w-full">
+					Sign up
 				</Button>
 				<Link
-					to="/sign-up"
-					className="text-blue-500 transition-colors hover:text-blue-700"
+					to="/auth/sign-in"
+					className="block text-blue-500 transition-colors hover:text-blue-700"
 				>
-					If you don't have an account, sign up
+					If you have an account, sign in
 				</Link>
 			</form>
 		</Form>
 	);
 };
 
-export default AuthLoginForm;
+export default AuthRegistrationForm;

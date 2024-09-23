@@ -1,6 +1,6 @@
+import Search from '@/shared/components/Search/Search';
 import { useSocket } from '@/shared/hooks/useSocket';
 import { Card } from '@/shared/ui/card';
-import Search from '@/shared/ui/Search/Search';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Chats from './Chats/Chats';

@@ -4,7 +4,7 @@ import { IAuth } from './auth.interface';
 
 export const AUTH = 'auth';
 
-type AuthServiceResponse = IUser | undefined;
+type AuthServiceResponse = IUser | null;
 
 interface AuthServiceInterface {
 	signUp(data: IUserWithPassword): Promise<AuthServiceResponse>;
@@ -19,14 +19,12 @@ class AuthService implements AuthServiceInterface {
 			const user = await axios.post(`${AUTH}/sign-up`, data);
 
 			if (user.status >= 400) {
-				return {
-					user: null,
-					error: user.data.message,
-				};
+				return null;
 			}
 
 			return user.data;
-		} catch (error) {
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		} catch (error: any) {
 			throw error.response.data.message;
 		}
 	}
@@ -36,7 +34,8 @@ class AuthService implements AuthServiceInterface {
 			const user = await axios.post(`${AUTH}/sign-in`, data);
 
 			return user.data;
-		} catch (error: unknown) {
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		} catch (error: any) {
 			throw error.response.data.message;
 		}
 	}
@@ -50,14 +49,12 @@ class AuthService implements AuthServiceInterface {
 			const user = await axios.get(`${AUTH}/me`);
 
 			if (user.status >= 400) {
-				return {
-					user: null,
-					error: user.data,
-				};
+				return null;
 			}
 
 			return user.data;
-		} catch (error) {
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		} catch (error: any) {
 			throw error.response.data.message;
 		}
 	}

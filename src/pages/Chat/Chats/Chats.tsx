@@ -1,5 +1,5 @@
 import chatService from '@/shared/api/chat/chat.service';
-import AvatarWithUserInfo from '@/shared/ui/AvatarWithUserInfo/AvatarWithUserInfo';
+import AvatarWithUserInfo from '@/shared/components/AvatarWithUserInfo/AvatarWithUserInfo';
 import { formatName } from '@/shared/utils/formatName';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';

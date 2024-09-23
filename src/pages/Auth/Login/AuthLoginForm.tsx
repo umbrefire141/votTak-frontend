@@ -1,5 +1,5 @@
 import { useUserStore } from '@/shared/model/user.store';
-import { registrationSchemaForm } from '@/shared/schemas/registration.schema';
+import { loginFormSchema } from '@/shared/schemas/login.schema';
 import { Button } from '@/shared/ui/button';
 import {
 	Form,
@@ -16,24 +16,20 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 
-const AuthRegistrationForm = () => {
-	const form = useForm<z.infer<typeof registrationSchemaForm>>({
+const AuthLoginForm = () => {
+	const form = useForm<z.infer<typeof loginFormSchema>>({
 		defaultValues: {
 			email: '',
-			nickname: '',
-			firstname: '',
-			lastname: '',
 			password: '',
 			confirmedPassword: '',
 		},
-		resolver: zodResolver(registrationSchemaForm),
+		resolver: zodResolver(loginFormSchema),
 	});
 	const [isNotEqualPassword, setIsNotEqualPassword] = useState<boolean>(false);
-	const { signUp, error } = useUserStore();
+	const { signIn, error } = useUserStore();
 	const navigate = useNavigate();
 
-	// 2. Define a submit handler.
-	function onSubmit(values: z.infer<typeof registrationSchemaForm>) {
+	async function onSubmit(values: z.infer<typeof loginFormSchema>) {
 		const { password, confirmedPassword } = form.getValues();
 
 		if (password !== confirmedPassword) {
@@ -43,12 +39,12 @@ const AuthRegistrationForm = () => {
 
 		navigate('/');
 		setIsNotEqualPassword(false);
-		signUp(values);
+		signIn(values);
 	}
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
 				<FormField
 					control={form.control}
 					name="email"
@@ -64,51 +60,12 @@ const AuthRegistrationForm = () => {
 				/>
 				<FormField
 					control={form.control}
-					name="nickname"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Nickname</FormLabel>
-							<FormControl>
-								<Input placeholder="nickname" {...field} />
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				<FormField
-					control={form.control}
-					name="firstname"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Firstname</FormLabel>
-							<FormControl>
-								<Input placeholder="Firstname" {...field} />
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				<FormField
-					control={form.control}
-					name="lastname"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Lastname</FormLabel>
-							<FormControl>
-								<Input placeholder="Lastname" {...field} />
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				<FormField
-					control={form.control}
 					name="password"
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>Password</FormLabel>
 							<FormControl>
-								<Input type="password" placeholder="Password" {...field} />
+								<Input type="password" placeholder="password" {...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -123,7 +80,7 @@ const AuthRegistrationForm = () => {
 							<FormControl>
 								<Input
 									type="password"
-									placeholder="Confirm password"
+									placeholder="confirm password"
 									{...field}
 								/>
 							</FormControl>
@@ -139,18 +96,18 @@ const AuthRegistrationForm = () => {
 				{error && (
 					<p className="text-base font-medium text-destructive">{error}</p>
 				)}
-				<Button type="submit" className="w-full max-w-28 mr-3">
-					Sign up
+				<Button type="submit" className="block w-full">
+					Sign in
 				</Button>
 				<Link
-					to="/sign-in"
-					className="text-blue-500 transition-colors hover:text-blue-700"
+					to="/auth/sign-up"
+					className="block text-blue-500 transition-colors hover:text-blue-700"
 				>
-					If you have an account, sign in
+					If you don't have an account, sign up
 				</Link>
 			</form>
 		</Form>
 	);
 };
 
-export default AuthRegistrationForm;
+export default AuthLoginForm;

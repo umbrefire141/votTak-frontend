@@ -1,5 +1,5 @@
 interface IPhotoService {}
 
-class PhotoService {}
+class PhotoService implements IPhotoService {}
 
 export default new PhotoService();

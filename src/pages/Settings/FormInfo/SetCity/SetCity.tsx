@@ -1,4 +1,4 @@
-import Combobox from '@/shared/ui/Combobox/Combobox';
+import Combobox from '@/shared/components/Combobox/Combobox';
 import { getAllCities } from '@/shared/utils/api';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
@@ -8,7 +8,9 @@ import { ISetCityComponent } from './SetCity.interface';
 const SetCity = ({ field }: ISetCityComponent) => {
 	const [selectedCity, setSelectedCity] = useState<string>('');
 	const { data } = useQuery('cities', getAllCities);
+	console.log(field);
 
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const [cities, setCities] = useState<any[]>([]);
 
 	useEffect(() => {

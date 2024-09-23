@@ -17,29 +17,7 @@ interface UserState {
 
 export const useUserStore = create<UserState>(set => ({
 	error: null,
-	user: {
-		uuid: 'eataest',
-		firstname: 'Matvey',
-		lastname: 'Aksentev',
-		nickname: 'mioop75',
-		email: 'matvejaksentev80@gmail.com',
-		info: {
-			birth: '7 january',
-			city: 'Novosibirsk',
-			hometown: 'Novosibirks',
-			languages: ['Japanese', 'Russian', 'English'],
-		},
-		chats: [],
-		comments: [],
-		friends: [],
-		likes: [],
-		notifications: [],
-		photos: [],
-		posts: [],
-		shares: [],
-		created_at: new Date(),
-		updated_at: new Date(),
-	},
+	user: null,
 	loading: false,
 	signIn: async data => {
 		set({ loading: true });

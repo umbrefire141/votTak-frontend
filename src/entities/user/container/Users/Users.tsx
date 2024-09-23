@@ -1,20 +1,11 @@
-import { IUser } from '@/shared/types/User.interface';
-import AvatarWithUserInfo from '@/shared/ui/AvatarWithUserInfo/AvatarWithUserInfo';
+import AvatarWithUserInfo from '@/shared/components/AvatarWithUserInfo/AvatarWithUserInfo';
 import { formatName } from '@/shared/utils/formatName';
-import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 import { IUsersComponent } from './Users.interface';
 
-const Users = ({ className }: IUsersComponent) => {
-	const users: IUser[] = [];
-
+const Users = ({ users }: IUsersComponent) => {
 	return (
-		<div
-			className={clsx(
-				'w-full max-w-72 p-5 shadow-sm rounded-lg bg-card text-card-foreground border',
-				className
-			)}
-		>
+		<div>
 			<h4 className="text-lg font-bold mb-5">Users</h4>
 			<div className="flex flex-col gap-3">
 				{users &&

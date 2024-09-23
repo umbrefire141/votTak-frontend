@@ -1,5 +1,5 @@
 interface ICommentsService {}
 
-class CommentsService {}
+class CommentsService implements ICommentsService {}
 
 export default new CommentsService();

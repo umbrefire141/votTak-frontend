@@ -1,3 +1,5 @@
+import { IUser } from '@/shared/types/User.interface';
+
 export interface IUsersComponent {
-	className?: string;
+	users?: IUser[];
 }

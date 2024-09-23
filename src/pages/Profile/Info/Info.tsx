@@ -1,6 +1,6 @@
 import usersService from '@/shared/api/users.service';
+import AvatarWithUserInfo from '@/shared/components/AvatarWithUserInfo/AvatarWithUserInfo';
 import { useUserStore } from '@/shared/model/user.store';
-import AvatarWithUserInfo from '@/shared/ui/AvatarWithUserInfo/AvatarWithUserInfo';
 import { Button } from '@/shared/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/shared/ui/card';
 import {
@@ -58,7 +58,9 @@ const Info = ({
 					></div>
 				</div>
 				<div className="flex items-center gap-3">
-					<Button onClick={addFriend}>Add friend</Button>
+					{userCurrent?.uuid !== uuid && (
+						<Button onClick={addFriend}>Add friend</Button>
+					)}
 					<WriteMessage uuid={uuid} firstname={firstname} lastname={lastname} />
 					<DropdownMenu>
 						<DropdownMenuTrigger className="outline-none bg-secondary p-2 transition-colors rounded-sm w-10 h-10 hover:bg-slate-300">

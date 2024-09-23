@@ -4,6 +4,8 @@ import { BiHide } from 'react-icons/bi';
 import { IHideButtonComponent } from './HideButton.interface';
 
 const HideButton = ({ uuid }: IHideButtonComponent) => {
+	console.log(uuid);
+
 	return (
 		<DropdownMenuItem className="p-0">
 			<Button variant="ghost" size="sm">

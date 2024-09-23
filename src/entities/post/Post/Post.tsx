@@ -1,8 +1,9 @@
+import AvatarWithUserInfo from '@/shared/components/AvatarWithUserInfo/AvatarWithUserInfo';
 import { IPost } from '@/shared/types/Post.interface';
-import AvatarWithUserInfo from '@/shared/ui/AvatarWithUserInfo/AvatarWithUserInfo';
 import { Card, CardContent, CardFooter, CardHeader } from '@/shared/ui/card';
 import { formatName } from '@/shared/utils/formatName';
 import { timeSince } from '@/shared/utils/timeSince';
+import { useState } from 'react';
 import Actions from './Actions/Actions';
 import Comment from './Comment/Comment';
 import Comments from './Comments/Comments';
@@ -18,6 +19,8 @@ const Post = ({
 	created_at,
 	author,
 }: IPost) => {
+	const [isShownComments, setIsShownComments] = useState(false);
+
 	return (
 		<Card className="max-w-lg">
 			<CardHeader className="flex-row gap-4 items-start justify-between">
@@ -35,11 +38,14 @@ const Post = ({
 			<CardFooter className="justify-between gap-5">
 				<div className="flex gap-5">
 					<Like likes={likes.length} />
-					<Comment comments={comments.length} />
+					<Comment
+						comments={comments.length}
+						setIsShownComments={setIsShownComments}
+					/>
 				</div>
 				<Share />
 			</CardFooter>
-			<Comments />
+			{(isShownComments || comments.length > 0) && <Comments />}
 		</Card>
 	);
 };

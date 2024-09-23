@@ -1,4 +1,4 @@
-import Search from '@/shared/ui/Search/Search';
+import Search from '@/shared/components/Search/Search';
 import Logo from './Logo';
 import Notification from './Notification/Notification';
 import Profile from './Profile/Profile';

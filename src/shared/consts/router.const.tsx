@@ -1,10 +1,10 @@
+import LoginPage from '@/pages/Auth/Login/Login';
+import RegistrationPage from '@/pages/Auth/Registration/Registration';
 import ChatPage from '@/pages/Chat/Chat';
 import ProfilePage from '@/pages/Profile/Profile';
-import RegistrationPage from '@/pages/Registration/Registration';
 import SettingsPage from '@/pages/Settings/Settings';
 import { ReactNode } from 'react';
 import HomePage from '../../pages/Home/Home';
-import LoginPage from '../../pages/Login/Login';
 
 type Router = {
 	path: string;
@@ -30,13 +30,13 @@ export const routersWithAuthorization: Router[] = [
 	},
 ];
 
-export const routerWithoutAuthorization: Router[] = [
+export const routerAuth: Router[] = [
 	{
-		path: '/sign-in',
+		path: '/auth/sign-in',
 		element: <LoginPage />,
 	},
 	{
-		path: '/sign-up',
+		path: '/auth/sign-up',
 		element: <RegistrationPage />,
 	},
 ];

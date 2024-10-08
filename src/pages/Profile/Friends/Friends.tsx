@@ -1,30 +1,43 @@
-import AvatarWithUserInfo from '@/shared/components/AvatarWithUserInfo/AvatarWithUserInfo';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card';
-import { formatName } from '@/shared/utils/formatName';
-import { Link } from 'react-router-dom';
+import Friend from './Friend/Friend';
 import { IFriendsComponent } from './Friends.interface';
 
-const Friends = ({ friends }: IFriendsComponent) => {
+const Friends = ({ uuid, friends }: IFriendsComponent) => {
 	return (
 		<Card className="mb-2">
 			<CardHeader>
 				<CardTitle>Friends</CardTitle>
 			</CardHeader>
 			<CardContent className="grid grid-cols-3 gap-4">
-				{friends.map(friend => (
-					<Link
-						key={friend.id}
-						to={friend.user.uuid}
-						className="flex flex-col items-center gap-2"
-					>
-						<AvatarWithUserInfo
-							avatarSrc={friend?.user?.avatar?.photo.image}
-							fullName={formatName(friend.user.firstname, friend.user.lastname)}
-							direction="column"
-							sizeTitle="base"
-						/>
-					</Link>
-				))}
+				{friends.length > 0 ? (
+					friends.map(friend =>
+						friend.userOf.uuid !== uuid ? (
+							<Friend
+								key={friend.id}
+								friend={{
+									uuid: friend.userOf.uuid,
+									image: friend?.userOf?.avatar?.photo.image,
+									firstname: friend.userOf.firstname,
+									lastname: friend.userOf.lastname,
+								}}
+							/>
+						) : (
+							<Friend
+								key={friend.id}
+								friend={{
+									uuid: friend.user.uuid,
+									image: friend?.user?.avatar?.photo.image,
+									firstname: friend.user.firstname,
+									lastname: friend.user.lastname,
+								}}
+							/>
+						)
+					)
+				) : (
+					<div className="text-center w-full col-span-3 font-medium">
+						No friends
+					</div>
+				)}
 			</CardContent>
 		</Card>
 	);

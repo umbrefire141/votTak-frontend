@@ -9,12 +9,20 @@ const Photos = ({ photos }: IPhotosComponent) => {
 				<CardTitle>Photos</CardTitle>
 			</CardHeader>
 			<CardContent className="grid grid-cols-2 gap-4">
-				{photos.map(photo => (
-					<img src={photo.image} alt="Image" className="h-24 rounded-e-md" />
-				))}
-				<Button variant="outline" className="col-start-1 col-end-3">
-					See more
-				</Button>
+				{photos.length > 0 ? (
+					photos.map(photo => (
+						<img src={photo.image} alt="Image" className="h-24 rounded-e-md" />
+					))
+				) : (
+					<div className="text-center w-full col-span-3 font-medium">
+						No Photos
+					</div>
+				)}
+				{photos.length > 0 && (
+					<Button variant="outline" className="col-start-1 col-end-3">
+						See more
+					</Button>
+				)}
 			</CardContent>
 		</Card>
 	);

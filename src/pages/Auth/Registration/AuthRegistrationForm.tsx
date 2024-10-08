@@ -1,3 +1,4 @@
+import TextError from '@/shared/components/TextError';
 import { useUserStore } from '@/shared/model/user.store';
 import { registrationSchemaForm } from '@/shared/schemas/registration.schema';
 import { Button } from '@/shared/ui/button';
@@ -131,14 +132,8 @@ const AuthRegistrationForm = () => {
 						</FormItem>
 					)}
 				/>
-				{isNotEqualPassword && (
-					<p className="text-base font-medium text-destructive">
-						Passwords don't match
-					</p>
-				)}
-				{error && (
-					<p className="text-base font-medium text-destructive">{error}</p>
-				)}
+				{isNotEqualPassword && <TextError>Passwords don't match</TextError>}
+				{error && <TextError>{error}</TextError>}
 				<Button type="submit" className="w-full">
 					Sign up
 				</Button>

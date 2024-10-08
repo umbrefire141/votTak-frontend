@@ -1,7 +1,7 @@
 import {
 	routerAuth,
 	routersWithAuthorization,
-} from '@/shared/consts/router.const';
+} from '@/app/routers/router.const';
 import AuthLayout from '@/widgets/AuthLayout/AuthLayout';
 import Layout from '@/widgets/layout/Layout';
 import { Route, Routes } from 'react-router-dom';

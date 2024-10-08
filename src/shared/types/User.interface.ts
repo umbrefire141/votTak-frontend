@@ -12,8 +12,9 @@ export interface IUser {
 	email: string;
 	nickname: string;
 	firstname: string;
+	language: string;
 	lastname: string;
-	info?: IUserInfo;
+	user_info?: IUserInfo;
 	created_at: Date;
 	updated_at: Date;
 	comments: IComment[];
@@ -29,6 +30,7 @@ export interface IUser {
 export interface IFriend {
 	id: number;
 	user: IUser;
+	userOf: IUser;
 	confirmed: boolean;
 }
 
@@ -38,9 +40,14 @@ export interface IAvatar {
 }
 
 export interface IUserInfo {
-	city: string;
+	currentCity: string;
 	hometown: string;
-	birth: string;
+	description: string;
+	birth: Date;
+	occupation: string;
+	favorite_movies: string[];
+	favorite_games: string[];
+	hobbies: string[];
 	languages: string[];
 }
 

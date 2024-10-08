@@ -2,7 +2,7 @@ import Posts from '@/entities/post/container/Posts/Posts';
 import CreatePost from '@/entities/post/CreatePost/CreatePost';
 import Users from '@/entities/user/container/Users/Users';
 import postsService from '@/shared/api/posts.service';
-import usersService from '@/shared/api/users.service';
+import usersService from '@/shared/api/users/users.service';
 import Loader from '@/shared/components/Loader/Loader';
 import { useQuery } from 'react-query';
 

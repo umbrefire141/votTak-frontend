@@ -8,7 +8,7 @@ const Header = () => {
 		<header className="p-4 shadow-md min-h-16 mb-6">
 			<div className="container">
 				<div className="flex justify-between items-center">
-					<div className="flex justify-between items-center flex-shrink flex-grow-0 flex-[40%]">
+					<div className="flex justify-between items-center flex-shrink gap-2 flex-grow-0 flex-[40%]">
 						<Logo />
 						<div className="flex items-center gap-4">
 							<Search />

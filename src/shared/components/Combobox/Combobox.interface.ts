@@ -5,6 +5,9 @@ export interface IComboboxComponent {
 	name: string;
 	selectedItemValue: string;
 	setSelectedItemValue: Dispatch<SetStateAction<string>>;
+	formName?: string;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	setFormValue?: any;
 	disabled?: boolean;
 }
 

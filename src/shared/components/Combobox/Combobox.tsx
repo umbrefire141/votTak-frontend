@@ -8,6 +8,7 @@ import {
 	CommandItem,
 	CommandList,
 } from '@/shared/ui/command';
+import { FormControl } from '@/shared/ui/form';
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
 import { Check, ChevronsUpDown } from 'lucide-react';
 import { useState } from 'react';
@@ -18,6 +19,8 @@ const Combobox = ({
 	name,
 	selectedItemValue,
 	setSelectedItemValue,
+	formName,
+	setFormValue,
 	disabled = false,
 }: IComboboxComponent) => {
 	const [open, setOpen] = useState(false);
@@ -26,17 +29,19 @@ const Combobox = ({
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<PopoverTrigger asChild>
-				<Button
-					variant="outline"
-					role="combobox"
-					aria-expanded={open}
-					className="w-[200px] justify-between"
-				>
-					{value
-						? list.find(item => item.value === value)?.label
-						: `Select ${name}...`}
-					<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-				</Button>
+				<FormControl>
+					<Button
+						variant="outline"
+						role="combobox"
+						aria-expanded={open}
+						className="w-[200px] justify-between"
+					>
+						{value
+							? list.find(item => item.value === value)?.label
+							: `Select ${name}...`}
+						<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+					</Button>
+				</FormControl>
 			</PopoverTrigger>
 			<PopoverContent className="w-[200px] p-0">
 				<Command>
@@ -52,6 +57,10 @@ const Combobox = ({
 									onSelect={currentValue => {
 										setValue(currentValue === value ? '' : currentValue);
 										setSelectedItemValue(
+											currentValue === value ? '' : currentValue
+										);
+										setFormValue?.(
+											formName,
 											currentValue === value ? '' : currentValue
 										);
 										setOpen(false);

@@ -1,28 +1,30 @@
 import Combobox from '@/shared/components/Combobox/Combobox';
-import { getAllCities } from '@/shared/utils/api';
-import { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
-import { ICity } from '../../Settings.interface';
+import { useState } from 'react';
 import { ISetCityComponent } from './SetCity.interface';
 
-const SetCity = ({ field }: ISetCityComponent) => {
-	const [selectedCity, setSelectedCity] = useState<string>('');
-	const { data } = useQuery('cities', getAllCities);
-	console.log(field);
+const SetCity = ({ field, setValue }: ISetCityComponent) => {
+	const [selectedCity, setSelectedCity] = useState<string>(
+		field.value as string
+	);
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const [cities, setCities] = useState<any[]>([]);
-
-	useEffect(() => {
-		if (data)
-			setCities((prev: ICity[]) => [
-				...prev,
-				...data.data.map((city: ICity) => ({
-					label: city.name,
-					value: city.name,
-				})),
-			]);
-	}, [data]);
+	const [cities] = useState<any[]>([
+		{ label: 'Moscow', value: 'moscow' },
+		{ label: 'Saint-Petersburg', value: 'saint-petersburg' },
+		{ label: 'Novosibirsk', value: 'novosibirsk' },
+		{ label: 'Yekaterinburg', value: 'yekaterinburg' },
+		{ label: 'Kazan', value: 'kazan' },
+		{ label: 'Nizhny Novgorod', value: 'nizhny-novgorod' },
+		{ label: 'Krasnoyarsk', value: 'krasnoyarsk' },
+		{ label: 'Chelyabinsk', value: 'chelyabinsk' },
+		{ label: 'Samara', value: 'samara' },
+		{ label: 'Ufa', value: 'ufa' },
+		{ label: 'Rostov-on-don', value: 'rostov-on-don' },
+		{ label: 'Krasnodar', value: 'krasnodar' },
+		{ label: 'Omsk', value: 'omsk' },
+		{ label: 'Voronezh', value: 'voronezh' },
+		{ label: 'Perm', value: 'perm' },
+	]);
 
 	return (
 		<Combobox
@@ -30,6 +32,8 @@ const SetCity = ({ field }: ISetCityComponent) => {
 			name="city"
 			selectedItemValue={selectedCity}
 			setSelectedItemValue={setSelectedCity}
+			formName={field.name}
+			setFormValue={setValue}
 		/>
 	);
 };

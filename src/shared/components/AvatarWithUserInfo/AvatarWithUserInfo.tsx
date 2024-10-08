@@ -1,5 +1,5 @@
 import UserLogo from '@/app/media/user_logo.png';
-import usersService from '@/shared/api/users.service';
+import usersService from '@/shared/api/users/users.service';
 import { apiServer } from '@/shared/consts/apiServer.const';
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui/avatar';
 import clsx from 'clsx';

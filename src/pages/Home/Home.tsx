@@ -8,7 +8,7 @@ import { useQuery } from 'react-query';
 
 export default function HomePage() {
 	const { data, isLoading } = useQuery({
-		queryKey: ['postsData'],
+		queryKey: ['posts'],
 		queryFn: () => postsService.getAllPosts(),
 	});
 

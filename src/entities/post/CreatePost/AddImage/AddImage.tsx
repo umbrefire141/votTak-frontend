@@ -1,24 +1,23 @@
-import { IFile } from '@/shared/types/File.interface';
+import postsService from '@/shared/api/posts.service';
 import { Button } from '@/shared/ui/button';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 import { FaRegImage } from 'react-icons/fa';
-import { v4 } from 'uuid';
 import { IAddImageComponent } from './AddImage.interface';
 
 const AddImage = ({ setImages }: IAddImageComponent) => {
-	const [, setValue] = useState<IFile>();
-
-	const setImage = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+	const setImage = async (
+		e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => {
 		const files = (e.target as HTMLInputElement).files;
 
 		if (files) {
-			setValue(files[0]);
+			const photo = await postsService.uploadImage(files[0]);
 			setImages(prev => [
 				...prev,
 				{
-					uuid: v4(),
-					name: files[0].name,
-					file: URL.createObjectURL(files[0]),
+					id: photo.id,
+					name: photo.name,
+					file: photo.image,
 				},
 			]);
 		}

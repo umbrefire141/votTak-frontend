@@ -1,5 +1,5 @@
 export interface IImageUrl {
-	uuid: string;
+	id: number;
 	name: string;
 	file: string;
 }

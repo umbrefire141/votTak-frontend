@@ -20,11 +20,16 @@ const CreatePost = () => {
 		onSuccess: () => {
 			queryClient.invalidateQueries('posts');
 			setValue('');
+			setImages([]);
 		},
 	});
 
 	const submitData = () => {
-		mutation.mutate({ content: value, hidden: false });
+		mutation.mutate({
+			content: value,
+			hidden: false,
+			photoIds: images.map(({ id }) => id),
+		});
 	};
 
 	return (

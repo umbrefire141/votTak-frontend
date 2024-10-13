@@ -1,7 +1,9 @@
 import { IPost } from '@/shared/types/Post.interface';
 import axios from '@/shared/utils/axios';
 
-export type inputPostType = Pick<IPost, 'content' | 'hidden'>;
+export interface inputPostType extends Pick<IPost, 'content' | 'hidden'> {
+	photoIds: number[];
+}
 
 export interface PaginationWithPosts {
 	total: number;
@@ -46,6 +48,20 @@ class PostsService implements IPostsService {
 		const { data: updatedPost } = await axios.put(`${POSTS}/${uuid}`, data);
 
 		return updatedPost;
+	}
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	async uploadImage(img: any) {
+		const formData = new FormData();
+		formData.append('image', img);
+
+		const { data } = await axios.post(`${POSTS}/upload-image`, formData, {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+			},
+		});
+
+		return data;
 	}
 
 	async deletePost(uuid: string): Promise<void> {

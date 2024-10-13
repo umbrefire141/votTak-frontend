@@ -16,6 +16,7 @@ const Post = ({
 	content,
 	likes,
 	comments,
+	photos,
 	created_at,
 	author,
 }: IPost) => {
@@ -33,7 +34,7 @@ const Post = ({
 			</CardHeader>
 			<CardContent>
 				<p className="mb-3">{content}</p>
-				<Images />
+				{photos && <Images images={photos} />}
 			</CardContent>
 			<CardFooter className="justify-between gap-5">
 				<div className="flex gap-5">

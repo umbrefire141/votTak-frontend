@@ -1,3 +1,6 @@
+import { ILike } from '@/shared/types/Like.interface';
+
 export interface ILikeComponent {
-	likes: number;
+	uuid: string;
+	likes: ILike[];
 }

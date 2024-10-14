@@ -38,7 +38,7 @@ const Post = ({
 			</CardContent>
 			<CardFooter className="justify-between gap-5">
 				<div className="flex gap-5">
-					<Like likes={likes.length} />
+					<Like uuid={uuid} likes={likes} />
 					<Comment
 						comments={comments.length}
 						setIsShownComments={setIsShownComments}

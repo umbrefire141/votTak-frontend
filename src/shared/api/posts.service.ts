@@ -18,6 +18,8 @@ interface IPostsService {
 	createPost(data: inputPostType): Promise<IPost>;
 	updatePost(uuid: string, data: inputPostType): Promise<IPost>;
 	deletePost(uuid: string): Promise<void>;
+	likePost(uuid: string): Promise<IPost>;
+	unlikePost(uuid: string): Promise<IPost>;
 	hidePost(uuid: string): Promise<IPost>;
 	unhidePost(uuid: string): Promise<IPost>;
 }
@@ -66,6 +68,16 @@ class PostsService implements IPostsService {
 
 	async deletePost(uuid: string): Promise<void> {
 		await axios.delete(`${POSTS}/${uuid}`);
+	}
+
+	async likePost(uuid: string): Promise<IPost> {
+		const { data: post } = await axios.patch(`${POSTS}/like/${uuid}`);
+		return post;
+	}
+
+	async unlikePost(uuid: string): Promise<IPost> {
+		const { data: post } = await axios.patch(`${POSTS}/unlike/${uuid}`);
+		return post;
 	}
 
 	async hidePost(uuid: string): Promise<IPost> {

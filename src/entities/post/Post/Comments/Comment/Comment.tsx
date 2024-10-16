@@ -1,21 +1,27 @@
 import AvatarWithUserInfo from '@/shared/components/AvatarWithUserInfo/AvatarWithUserInfo';
+import { formatName } from '@/shared/utils/formatName';
+import { timeSince } from '@/shared/utils/timeSince';
 import Actions from '../../Actions/Actions';
 import Images from '../../Images/Images';
+import { ICommentProps } from './Comment.interface';
 
-const Comment = () => {
+const Comment = ({ comment }: ICommentProps) => {
 	return (
 		<div className="border-b-2 pb-3">
 			<div className="flex justify-between items-start">
 				<AvatarWithUserInfo
 					avatarSrc={undefined}
-					fullName="Alex Joh"
-					extraInfo="7s ago"
+					fullName={formatName(
+						comment.author.firstname,
+						comment.author.lastname
+					)}
+					extraInfo={timeSince(comment.created_at)}
 					className="mb-4"
 				/>
 				<Actions uuid="53" />
 			</div>
-			<Images />
-			<p>Content</p>
+			<Images images={comment.photos} />
+			<p>{comment.message}</p>
 		</div>
 	);
 };

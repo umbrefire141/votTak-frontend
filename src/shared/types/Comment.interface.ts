@@ -7,7 +7,7 @@ export interface IComment {
 	message: string;
 	post: IPost;
 	author: IUser;
-	photos: IPhoto;
+	photos: IPhoto[];
 	created_at: Date;
 	updated_at: Date;
 }

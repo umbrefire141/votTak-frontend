@@ -46,7 +46,9 @@ const Post = ({
 				</div>
 				<Share />
 			</CardFooter>
-			{(isShownComments || comments.length > 0) && <Comments />}
+			{(isShownComments || comments.length > 0) && (
+				<Comments post_uuid={uuid} comments={comments} />
+			)}
 		</Card>
 	);
 };

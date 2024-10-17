@@ -37,11 +37,11 @@ const FormInfo = () => {
 			languages: user?.user_info?.languages
 				? user?.user_info?.languages.join(',')
 				: '',
-			favorite_games: user?.user_info?.favoriteGames
-				? user?.user_info?.favoriteGames.join(',')
+			favorite_games: user?.user_info?.favorite_games
+				? user?.user_info?.favorite_games.join(',')
 				: '',
-			favorite_movies: user?.user_info?.favoriteMovies
-				? user?.user_info?.favoriteMovies.join(',')
+			favorite_movies: user?.user_info?.favorite_movies
+				? user?.user_info?.favorite_movies.join(',')
 				: '',
 			hobbies: user?.user_info?.hobbies
 				? user?.user_info?.hobbies.join(',')

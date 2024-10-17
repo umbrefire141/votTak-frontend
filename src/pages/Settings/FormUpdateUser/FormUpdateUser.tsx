@@ -15,7 +15,7 @@ import { z } from 'zod';
 import { updateUserSchema } from './updateUser.schema';
 
 const FormUpdateUser = () => {
-	const { user, updateUesr } = useUserStore();
+	const { user, updateUser } = useUserStore();
 
 	const form = useForm<z.infer<typeof updateUserSchema>>({
 		defaultValues: {
@@ -28,7 +28,7 @@ const FormUpdateUser = () => {
 	});
 
 	async function onSubmit(values: z.infer<typeof updateUserSchema>) {
-		updateUesr(values);
+		updateUser(values);
 	}
 
 	return (

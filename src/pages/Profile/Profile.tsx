@@ -2,29 +2,20 @@ import Posts from '@/entities/post/container/Posts/Posts';
 import CreatePost from '@/entities/post/CreatePost/CreatePost';
 import usersService from '@/shared/api/users/users.service';
 import { IPost } from '@/shared/types/Post.interface';
-import { IUser } from '@/shared/types/User.interface';
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import { useParams } from 'react-router-dom';
 import Friends from './Friends/Friends';
 import Info from './Info/Info';
 import Photos from './Photos/Photos';
 
 export default function ProfilePage() {
 	const { uuid } = useParams();
-	const [user, setUser] = useState<IUser | null>(null);
 
-	const navigate = useNavigate();
-
-	const fetchUser = async () => {
-		const user = await usersService.getUser(uuid as string);
-		setUser(user);
-
-		if (!user) navigate('/');
-	};
-
-	useEffect(() => {
-		if (!user && uuid) fetchUser();
-	}, [user, uuid]);
+	const { data: user } = useQuery({
+		queryFn: () => (uuid ? usersService.getUser(uuid as string) : null),
+		queryKey: ['users', uuid],
+		keepPreviousData: true,
+	});
 
 	return (
 		<div className="grid grid-cols-5 gap-4 lg:grid-cols-4">

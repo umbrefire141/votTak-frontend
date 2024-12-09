@@ -11,7 +11,12 @@ const Photos = ({ photos }: IPhotosComponent) => {
 			<CardContent className="grid grid-cols-2 gap-4">
 				{photos.length > 0 ? (
 					photos.map(photo => (
-						<img src={photo.image} alt="Image" className="h-24 rounded-e-md" />
+						<img
+							key={photo.id}
+							src={photo.image}
+							alt="Image"
+							className="h-24 rounded-e-md"
+						/>
 					))
 				) : (
 					<div className="text-center w-full col-span-3 font-medium">

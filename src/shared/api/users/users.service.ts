@@ -5,10 +5,13 @@ import axios from '@/shared/utils/axios';
 import { z } from 'zod';
 import { IChangePassword, IUpdateUserInfo } from './interface.interface';
 
+interface IUserWithIsFriend extends IUser {
+	isFriend: boolean;
+}
+
 interface IUsersService {
 	getUsers(): Promise<IUser[]>;
-	getUser(uuid: string): Promise<IUser>;
-	addFriend(uuid: string): Promise<void>;
+	getUser(uuid: string): Promise<IUserWithIsFriend>;
 	changePassword(dto: IChangePassword): Promise<IUser>;
 	changeLanguage(dto: z.infer<typeof changeLanguageSchema>): Promise<IUser>;
 	updateUserInfo(dto: IUpdateUserInfo): Promise<IUser>;
@@ -26,13 +29,8 @@ class UsersService implements IUsersService {
 		return users;
 	}
 
-	async getUser(uuid: string): Promise<IUser> {
+	async getUser(uuid: string): Promise<IUserWithIsFriend> {
 		const { data: user } = await axios.get(`${USERS}/one/${uuid}`);
-		return user;
-	}
-
-	async getFriendUsers() {
-		const { data: user } = await axios.get(`${USERS}/get-friends`);
 		return user;
 	}
 
@@ -56,14 +54,6 @@ class UsersService implements IUsersService {
 		} catch (error: any) {
 			throw error.response.data.message;
 		}
-	}
-
-	async addFriend(uuid: string): Promise<void> {
-		await axios.patch(`${USERS}/add-friend`, { user_uuid: uuid });
-	}
-
-	async confirmFriend(id: number) {
-		await axios.patch(`${USERS}/confirm-friend/${id}`);
 	}
 
 	async changePassword(dto: IChangePassword): Promise<IUser> {

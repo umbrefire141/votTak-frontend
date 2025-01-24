@@ -114,7 +114,7 @@ export const useUserStore = create<UserState>(set => ({
 			localStorage.setItem('user_uuid', response?.uuid as string);
 			set({ user: response });
 		} catch (error) {
-			set({ user: null }, false);
+			set({ user: null, error: 'Not authorized' }, false);
 		} finally {
 			set({ loading: false });
 		}

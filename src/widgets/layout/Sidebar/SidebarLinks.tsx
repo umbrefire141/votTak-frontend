@@ -1,5 +1,5 @@
 import { useUserStore } from '@/shared/model/user.store';
-import { BiChat, BiGroup, BiHome, BiUser } from 'react-icons/bi';
+import { BiChat, BiGroup, BiHome, BiPhotoAlbum, BiUser } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 
 const SidebarLinks = () => {
@@ -31,6 +31,13 @@ const SidebarLinks = () => {
 			>
 				<BiGroup className="w-6 h-6" />
 				<div className="text-sm">Friends</div>
+			</Link>
+			<Link
+				to={'/photos'}
+				className="flex w-full items-center gap-2 p-2 rounded-md"
+			>
+				<BiPhotoAlbum className="w-6 h-6" />
+				<div className="text-sm">Photos</div>
 			</Link>
 		</div>
 	);

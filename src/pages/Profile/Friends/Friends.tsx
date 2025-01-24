@@ -14,7 +14,7 @@ const Friends = ({ uuid, friends }: IFriendsComponent) => {
 						friend.userOf.uuid !== uuid ? (
 							<Friend
 								key={friend.id}
-								user_id={uuid}
+								user_uuid={uuid}
 								friend={{
 									uuid: friend.userOf.uuid,
 									image: friend?.userOf?.avatar?.photo.image,
@@ -25,7 +25,7 @@ const Friends = ({ uuid, friends }: IFriendsComponent) => {
 						) : (
 							<Friend
 								key={friend.id}
-								user_id={uuid}
+								user_uuid={uuid}
 								friend={{
 									uuid: friend.user.uuid,
 									image: friend?.user?.avatar?.photo.image,

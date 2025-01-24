@@ -1,11 +1,14 @@
+import friendsService from '@/shared/api/friends/friends.service';
 import AvatarWithUserInfo from '@/shared/components/AvatarWithUserInfo/AvatarWithUserInfo';
 import { useUserStore } from '@/shared/model/user.store';
 import { Card, CardContent, CardFooter, CardHeader } from '@/shared/ui/card';
 import { Separator } from '@/shared/ui/separator';
 import { formatName } from '@/shared/utils/formatName';
 import clsx from 'clsx';
+import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
-import AddFriend from './AddFriend/AddFriend';
+import ActionsFriend from './ActionsFriend/ActionsFriend';
 import { IInfoComponent } from './Info.interface';
 import Menu from './Menu/Menu';
 import WriteMessage from './WriteMessage/WriteMessage';
@@ -16,13 +19,22 @@ const Info = ({
 	email,
 	firstname,
 	lastname,
-	friendsCount,
+	friends,
 	photosCount,
 	info,
 }: IInfoComponent) => {
+	const { user: userCurrent } = useUserStore();
+	const { data: friend } = useQuery({
+		queryFn: () => (uuid ? friendsService.getFriend(uuid) : null),
+		queryKey: ['friend', uuid],
+		keepPreviousData: true,
+	});
+	const [isFriend, setIsFriend] = useState(false);
 	const status = false;
 
-	const { user: userCurrent } = useUserStore();
+	useEffect(() => {
+		if (friend) setIsFriend(Object.keys(friend).length > 0 ? true : false);
+	}, [friend]);
 
 	return (
 		<Card className="mb-5 p-3 col-start-1 col-end-7">
@@ -45,7 +57,13 @@ const Info = ({
 					></div>
 				</div>
 				<div className="flex items-center gap-3">
-					{userCurrent?.uuid !== uuid && <AddFriend uuid={uuid} />}
+					{userCurrent?.uuid !== uuid && (
+						<ActionsFriend
+							isFriend={isFriend}
+							user_id={friend?.id as number}
+							uuid={uuid}
+						/>
+					)}
 					<WriteMessage uuid={uuid} firstname={firstname} lastname={lastname} />
 					<Menu uuid={uuid} />
 				</div>
@@ -163,7 +181,7 @@ const Info = ({
 					<p className="text-gray-500">Photos</p>
 				</div>
 				<div className="text-center">
-					<div className="text-xl text-blue-600">{friendsCount}</div>
+					<div className="text-xl text-blue-600">{friends.length}</div>
 					<p className="text-gray-500">Friends</p>
 				</div>
 			</CardFooter>

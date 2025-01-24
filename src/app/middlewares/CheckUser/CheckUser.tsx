@@ -13,7 +13,7 @@ export default function CheckUser({ children }: PropsWithChildren) {
 	}, [user]);
 
 	useEffect(() => {
-		if (!user) navigate('/auth/sign-in');
+		if (!user && error) navigate('/auth/sign-in');
 	}, [error]);
 
 	if (loading) {

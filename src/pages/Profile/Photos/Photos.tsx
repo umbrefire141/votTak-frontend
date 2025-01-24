@@ -1,3 +1,4 @@
+import { apiServer } from '@/shared/consts/apiServer.const';
 import { Button } from '@/shared/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card';
 import { IPhotosComponent } from './Photos.interface';
@@ -13,7 +14,7 @@ const Photos = ({ photos }: IPhotosComponent) => {
 					photos.map(photo => (
 						<img
 							key={photo.id}
-							src={photo.image}
+							src={`${apiServer}/${photo.image}`}
 							alt="Image"
 							className="h-24 rounded-e-md"
 						/>

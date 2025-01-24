@@ -1,6 +1,7 @@
 import Posts from '@/entities/post/container/Posts/Posts';
 import CreatePost from '@/entities/post/CreatePost/CreatePost';
 import usersService from '@/shared/api/users/users.service';
+import { useUserStore } from '@/shared/model/user.store';
 import { IPost } from '@/shared/types/Post.interface';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
@@ -11,6 +12,7 @@ import Photos from './Photos/Photos';
 export default function ProfilePage() {
 	const { uuid } = useParams();
 
+	const { user: currentUser } = useUserStore();
 	const { data: user } = useQuery({
 		queryFn: () => (uuid ? usersService.getUser(uuid as string) : null),
 		queryKey: ['users', uuid],
@@ -28,7 +30,7 @@ export default function ProfilePage() {
 						firstname={user.firstname}
 						lastname={user.lastname}
 						info={user.user_info}
-						friendsCount={user.friends.length}
+						friends={user.friends}
 						photosCount={user.photos.length}
 					/>
 					<div className="col-start-1 col-end-13 lg:col-start-auto lg:col-end-auto">
@@ -36,7 +38,7 @@ export default function ProfilePage() {
 						<Photos photos={user.photos} />
 					</div>
 					<div className="col-start-1 col-end-13 lg:justify-self-center lg:col-start-2 lg:col-end-7">
-						<CreatePost />
+						{currentUser?.uuid === user.uuid && <CreatePost />}
 						<Posts posts={user?.posts as IPost[]} />
 					</div>
 				</>

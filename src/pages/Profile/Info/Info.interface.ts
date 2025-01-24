@@ -1,4 +1,4 @@
-import { IAvatar, IUserInfo } from '@/shared/types/User.interface';
+import { IAvatar, IFriend, IUserInfo } from '@/shared/types/User.interface';
 
 export interface IInfoComponent {
 	uuid: string;
@@ -7,6 +7,6 @@ export interface IInfoComponent {
 	firstname: string;
 	lastname: string;
 	info?: IUserInfo;
-	friendsCount: number;
+	friends: IFriend[];
 	photosCount: number;
 }

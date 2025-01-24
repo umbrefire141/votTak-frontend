@@ -1,18 +1,13 @@
-import usersService from '@/shared/api/users/users.service';
+import friendsService from '@/shared/api/friends/friends.service';
 import { IFriend } from '@/shared/types/User.interface';
-import { Button } from '@/shared/ui/button';
 import { useEffect, useState } from 'react';
+import Friend from './Friend/Friend';
 
 export default function FriendsPage() {
 	const [friends, setFriends] = useState<IFriend[] | null>(null);
 
-	const confirmFriend = async (id: number) => {
-		await usersService.confirmFriend(id);
-		getFriends();
-	};
-
 	const getFriends = async () => {
-		const data = await usersService.getFriendUsers();
+		const data = await friendsService.getFriendsUser();
 		setFriends(data);
 	};
 
@@ -26,12 +21,7 @@ export default function FriendsPage() {
 		<div>
 			{friends &&
 				friends.map(friend => (
-					<div key={friend.id}>
-						<div>{friend?.user?.nickname}</div>
-						{!friend?.confirmed && (
-							<Button onClick={() => confirmFriend(friend.id)}>Confirm</Button>
-						)}
-					</div>
+					<Friend key={friend.id} friend={friend} getFriends={getFriends} />
 				))}
 		</div>
 	);

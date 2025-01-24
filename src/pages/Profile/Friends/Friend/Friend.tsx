@@ -7,10 +7,10 @@ import { IFriend } from './Friend.interface';
 
 type FriendProps = {
 	friend: IFriend;
-	user_id: string;
+	user_uuid: string;
 };
 
-const Friend = ({ friend, user_id }: FriendProps) => {
+const Friend = ({ friend, user_uuid }: FriendProps) => {
 	const { uuid, image, firstname, lastname } = friend;
 	const queryClient = useQueryClient();
 	const navigate = useNavigate();
@@ -18,7 +18,7 @@ const Friend = ({ friend, user_id }: FriendProps) => {
 	const navigateToAnotherProfile = () => {
 		navigate(`/profile/${uuid}`);
 		queryClient.invalidateQueries({
-			queryKey: ['users', user_id],
+			queryKey: ['users', user_uuid, 'friend', user_uuid],
 			exact: true,
 		});
 	};

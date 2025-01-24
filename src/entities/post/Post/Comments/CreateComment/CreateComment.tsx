@@ -20,6 +20,7 @@ const CreateComment = ({ post_uuid }: ICreateCommentProps) => {
 
 	const submitData = () => {
 		mutation.mutate({ message: value });
+		if (!mutation.isError) setValue('');
 	};
 
 	return (

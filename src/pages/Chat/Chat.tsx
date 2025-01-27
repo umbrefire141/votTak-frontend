@@ -19,7 +19,7 @@ export default function ChatPage() {
 
 	return (
 		<Card className="flex justify-between mb-3 h-[600px]">
-			<div className="border-r-2 overflow-hidden">
+			<div className="border-r-2 overflow-hidden min-w-72">
 				<div className="p-4 pb-5">
 					<Search />
 				</div>

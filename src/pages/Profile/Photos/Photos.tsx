@@ -1,6 +1,7 @@
 import { apiServer } from '@/shared/consts/apiServer.const';
 import { Button } from '@/shared/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card';
+import { Link } from 'react-router-dom';
 import { IPhotosComponent } from './Photos.interface';
 
 const Photos = ({ photos }: IPhotosComponent) => {
@@ -25,9 +26,11 @@ const Photos = ({ photos }: IPhotosComponent) => {
 					</div>
 				)}
 				{photos.length > 0 && (
-					<Button variant="outline" className="col-start-1 col-end-3">
-						See more
-					</Button>
+					<Link to="/photos" className="col-start-1 col-end-3">
+						<Button variant="outline" className="w-full">
+							See more
+						</Button>
+					</Link>
 				)}
 			</CardContent>
 		</Card>

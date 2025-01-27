@@ -20,7 +20,7 @@ export default function ProfilePage() {
 	});
 
 	return (
-		<div className="grid grid-cols-5 gap-4 lg:grid-cols-4">
+		<div className="grid grid-cols-5 gap-4 lg:grid-cols-3">
 			{user && (
 				<>
 					<Info
@@ -33,11 +33,11 @@ export default function ProfilePage() {
 						friends={user.friends}
 						photosCount={user.photos.length}
 					/>
-					<div className="col-start-1 col-end-13 lg:col-start-auto lg:col-end-auto">
+					<div className="col-start-1 col-end-13 lg:col-start-1 lg:col-end-2">
 						<Friends friends={user.friends} uuid={user.uuid} />
 						<Photos photos={user.photos} />
 					</div>
-					<div className="col-start-1 col-end-13 lg:justify-self-center lg:col-start-2 lg:col-end-7">
+					<div className="col-start-1 col-end-12 lg:justify-self-center lg:col-start-2 lg:col-end-7">
 						{currentUser?.uuid === user.uuid && <CreatePost />}
 						<Posts posts={user?.posts as IPost[]} />
 					</div>

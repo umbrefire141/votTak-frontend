@@ -26,13 +26,13 @@ const Friend = ({ friend, user_uuid }: FriendProps) => {
 		<Button
 			onClick={navigateToAnotherProfile}
 			variant="ghost"
-			className="w-full flex p-0 h-auto flex-col items-center gap-2"
+			className="w-full flex px-10 py-2 h-auto flex-col items-center gap-2"
 		>
 			<AvatarWithUserInfo
 				avatarSrc={image}
 				fullName={formatName(firstname, lastname)}
 				direction="column"
-				sizeTitle="base"
+				sizeTitle="sm"
 			/>
 		</Button>
 	);

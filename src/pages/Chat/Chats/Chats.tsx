@@ -22,7 +22,7 @@ const Chats = () => {
 								chat.users[chat.users.length - 1].firstname,
 								chat.users[chat.users.length - 1].lastname
 							)}
-							extraInfo="Message"
+							extraInfo={chat.messages[chat.messages.length - 1]?.message}
 						/>
 					</Link>
 				))}

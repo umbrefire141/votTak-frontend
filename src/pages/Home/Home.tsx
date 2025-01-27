@@ -1,10 +1,10 @@
 import Posts from '@/entities/post/container/Posts/Posts';
 import CreatePost from '@/entities/post/CreatePost/CreatePost';
-import Users from '@/entities/user/container/Users/Users';
 import postsService from '@/shared/api/posts.service';
 import usersService from '@/shared/api/users/users.service';
 import Loader from '@/shared/components/Loader/Loader';
 import { useQuery } from 'react-query';
+import Sidebar from './Sidebar/Sidebar';
 
 export default function HomePage() {
 	const { data, isLoading } = useQuery({
@@ -22,16 +22,12 @@ export default function HomePage() {
 	if (isLoading) return <Loader />;
 
 	return (
-		<div className="flex gap-5 justify-between">
+		<div className="flex gap-5 justify-between flex-col lg:flex-row">
 			<div className="w-full">
 				<CreatePost />
 				<Posts posts={data?.posts ? data.posts : []} />
 			</div>
-			{users && users.length > 0 && (
-				<div className="w-full max-w-72 p-5 shadow-sm rounded-lg bg-card text-card-foreground border">
-					<Users users={users ? users : []} />
-				</div>
-			)}
+			<Sidebar users={users} />
 		</div>
 	);
 }

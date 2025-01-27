@@ -13,8 +13,6 @@ const Like = ({ uuid, likes }: ILikeComponent) => {
 	const userId = likes.find(({ user }) => user.uuid === currentUser?.uuid)?.user
 		.uuid;
 
-	console.log(userId);
-
 	const handleActionsPost = async () => {
 		if (active) {
 			setCountLikes(countLikes - 1);

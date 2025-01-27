@@ -1,11 +1,8 @@
 import postsService, { inputPostType } from '@/shared/api/posts.service';
-import { Button } from '@/shared/ui/button';
 import { Textarea } from '@/shared/ui/textarea';
-import EmojiPicker from 'emoji-picker-react';
 import { useState } from 'react';
-import { MdOutlineEmojiEmotions } from 'react-icons/md';
 import { useMutation, useQueryClient } from 'react-query';
-import AddImage from './AddImage/AddImage';
+import Actions from './Actions/Actions';
 import Images from './Images/Images';
 import { IImageUrl } from './ImageUrl.interface';
 
@@ -33,7 +30,7 @@ const CreatePost = () => {
 	};
 
 	return (
-		<div className="mb-5 max-w-lg p-4 shadow-sm rounded-lg bg-card text-card-foreground border">
+		<div className="mb-5 p-4 shadow-sm rounded-lg bg-card text-card-foreground border">
 			<h3 className="text-xl font-bold mb-4">Create Post</h3>
 			<Images images={images} setImages={setImages} />
 			<Textarea
@@ -42,30 +39,13 @@ const CreatePost = () => {
 				value={value}
 				onChange={e => setValue(e.target.value)}
 			/>
-			<div className="flex justify-between items-center gap-5">
-				<AddImage setImages={setImages} />
-				<Button
-					variant="ghost"
-					size="sm"
-					onClick={() => setIsOpenedEmojiPanel(a => !a)}
-				>
-					<MdOutlineEmojiEmotions className="w-5 h-5 mr-2" />
-					Emoji
-				</Button>
-				<Button
-					className="flex w-full max-w-28 ml-auto"
-					disabled={mutation.isLoading}
-					onClick={submitData}
-				>
-					Post
-				</Button>
-			</div>
-			<EmojiPicker
-				open={isOpenedEmojiPanel}
-				lazyLoadEmojis={true}
-				onEmojiClick={value => {
-					setValue(oldValue => oldValue + value.emoji);
-				}}
+			<Actions
+				isOpenedEmojiPanel={isOpenedEmojiPanel}
+				mutation={mutation}
+				setImages={setImages}
+				setIsOpenedEmojiPanel={setIsOpenedEmojiPanel}
+				setValue={setValue}
+				submitData={submitData}
 			/>
 		</div>
 	);

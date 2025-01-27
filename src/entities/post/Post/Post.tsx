@@ -47,7 +47,7 @@ const Post = ({
 	};
 
 	return (
-		<Card className="max-w-lg">
+		<Card>
 			<CardHeader className="flex-row gap-4 items-start justify-between">
 				<AvatarWithUserInfo
 					avatarSrc={author?.avatar?.photo.image}
@@ -76,8 +76,8 @@ const Post = ({
 					</Button>
 				)}
 			</CardContent>
-			<CardFooter className="justify-between gap-5">
-				<div className="flex gap-5">
+			<CardFooter className="justify-between flex-wrap gap-2 lg:gap-5">
+				<div className="flex flex-wrap gap-3 lg:*:flex-nowrap lg:gap-5">
 					<Like uuid={uuid} likes={likes} />
 					<Comment
 						comments={comments.length}

@@ -8,7 +8,7 @@ const Friends = ({ uuid, friends }: IFriendsComponent) => {
 			<CardHeader>
 				<CardTitle>Friends</CardTitle>
 			</CardHeader>
-			<CardContent className="grid grid-cols-3 gap-4">
+			<CardContent className="grid grid-cols-3 gap-4 p-5">
 				{friends.length > 0 ? (
 					friends.map(friend =>
 						friend.userOf.uuid !== uuid ? (

@@ -1,19 +1,23 @@
 import photoService from '@/shared/api/photo.service';
 import { Button } from '@/shared/ui/button';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useRef } from 'react';
 import { useQueryClient } from 'react-query';
 
 const AddImage = () => {
-	const queryClient = useQueryClient();
+	const ref = useRef<HTMLInputElement>(null);
 
+	const queryClient = useQueryClient();
+	// Fix bug, which after two uploaded image the input file doesn't work properly
 	const setImage = async (
 		e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
 	) => {
 		const files = (e.target as HTMLInputElement).files;
 
-		if (files) {
+		if (files && ref.current) {
 			await photoService.uploadImage(files[0]);
 			queryClient.invalidateQueries('photos');
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			ref.current.value = null as any;
 		}
 	};
 
@@ -27,6 +31,7 @@ const AddImage = () => {
 					accept="image/*"
 					multiple={false}
 					onChange={setImage}
+					ref={ref}
 				/>
 			</Button>
 		</div>

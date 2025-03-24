@@ -1,6 +1,5 @@
-import { IUser } from './User.interface';
-
 export interface INotification {
-	id: number;
-	received: IUser;
+	id?: number;
+	message: string;
+	created_at: Date;
 }

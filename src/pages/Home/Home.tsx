@@ -22,7 +22,7 @@ export default function HomePage() {
 	if (isLoading) return <Loader />;
 
 	return (
-		<div className="flex gap-5 justify-between flex-col lg:flex-row">
+		<div className="flex mb-5 gap-5 justify-between flex-col lg:flex-row">
 			<div className="w-full">
 				<CreatePost />
 				<Posts posts={data?.posts ? data.posts : []} />

@@ -14,7 +14,7 @@ export default function PhotosPage() {
 			<div className="mb-3">
 				<AddImage />
 			</div>
-			<div className="grid grid-cols-3 grid-rows-3 gap-4">
+			<div className="grid grid-rows-3 gap-4 sm:grid-cols-2 md:grid-cols-3">
 				{photos ? (
 					photos.map(photo => <Photo key={photo.id} photo={photo} />)
 				) : (

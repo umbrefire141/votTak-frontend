@@ -1,3 +1,6 @@
+import { useNotifications } from '@/shared/hooks/useNotifications';
+import { useUserStore } from '@/shared/model/user.store';
+import { INotification } from '@/shared/types/Notification.interface';
 import { Button } from '@/shared/ui/button';
 import {
 	DropdownMenu,
@@ -6,10 +9,39 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from '@/shared/ui/dropdown-menu';
+import { useEffect, useState } from 'react';
 import { IoNotificationsOutline } from 'react-icons/io5';
+import { toast } from 'sonner';
 import NotificationItems from './NotificationItems';
 
 const Notification = () => {
+	const socket = useNotifications();
+	const { user } = useUserStore();
+	const [notifications, setNotifications] = useState<INotification[]>([]);
+
+	const messageListener = (notification: INotification) => {
+		setNotifications(prev => [...prev, notification]);
+		toast(notification.message);
+	};
+
+	useEffect(() => {
+		if (socket && user) {
+			socket.on('sendNotification', messageListener);
+			socket.emit(
+				'getNotifications',
+				{ user_uuid: user.uuid },
+				(data: INotification[]) => {
+					setNotifications([...data]);
+				}
+			);
+
+			return () => {
+				socket.removeListener('sendNotification');
+				socket.removeListener('getNotifications');
+			};
+		}
+	}, [socket]);
+
 	return (
 		<div>
 			<DropdownMenu>
@@ -28,7 +60,7 @@ const Notification = () => {
 						</Button>
 					</DropdownMenuLabel>
 					<DropdownMenuSeparator />
-					<NotificationItems />
+					<NotificationItems notifications={notifications} />
 				</DropdownMenuContent>
 			</DropdownMenu>
 		</div>

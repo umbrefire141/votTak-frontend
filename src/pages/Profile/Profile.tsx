@@ -37,7 +37,7 @@ export default function ProfilePage() {
 						<Friends friends={user.friends} uuid={user.uuid} />
 						<Photos photos={user.photos} />
 					</div>
-					<div className="col-start-1 col-end-12 lg:justify-self-center lg:col-start-2 lg:col-end-7">
+					<div className="col-start-1 col-end-12 lg:col-start-2 lg:col-end-12">
 						{currentUser?.uuid === user.uuid && <CreatePost />}
 						<Posts posts={user?.posts as IPost[]} />
 					</div>

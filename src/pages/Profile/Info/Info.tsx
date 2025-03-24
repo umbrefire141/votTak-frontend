@@ -37,7 +37,7 @@ const Info = ({
 	}, [friend]);
 
 	return (
-		<Card className="mb-5 p-3 col-start-1 col-end-13 lg:col-end-13">
+		<Card className="mb-5 p-3 col-start-1 col-end-12">
 			<CardHeader className="flex-row gap-4 items-start justify-between">
 				<div className="relative">
 					<AvatarWithUserInfo

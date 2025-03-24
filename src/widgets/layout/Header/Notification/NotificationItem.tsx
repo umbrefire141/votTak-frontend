@@ -1,14 +1,11 @@
-import AvatarWithUserInfo from '@/shared/components/AvatarWithUserInfo/AvatarWithUserInfo';
+import { INotification } from '@/shared/types/Notification.interface';
+import { timeSince } from '@/shared/utils/timeSince';
 
-const NotificationItem = () => {
+const NotificationItem = ({ message, created_at }: INotification) => {
 	return (
 		<div className="flex justify-between gap-2">
-			<AvatarWithUserInfo
-				avatarSrc="https://images.unsplash.com/photo-1720849644323-499c62694fbb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-				fullName="Alex Joh"
-				extraInfo="Some content"
-			/>
-			<div>7s ago</div>
+			<div>{message}</div>
+			<div>{timeSince(created_at)}</div>
 		</div>
 	);
 };

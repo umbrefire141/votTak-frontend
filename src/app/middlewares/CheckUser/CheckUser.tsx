@@ -4,7 +4,7 @@ import { PropsWithChildren, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function CheckUser({ children }: PropsWithChildren) {
-	const { getMe, loading, error, user } = useUserStore();
+	const { getMe, loading, error, user, clearUserState } = useUserStore();
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
 
@@ -13,7 +13,10 @@ export default function CheckUser({ children }: PropsWithChildren) {
 	}, [user]);
 
 	useEffect(() => {
-		if (!user && error) navigate('/auth/sign-in');
+		if (!user && error) {
+			clearUserState();
+			navigate('/auth/sign-in');
+		}
 	}, [error]);
 
 	if (loading) {

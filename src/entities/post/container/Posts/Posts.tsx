@@ -5,7 +5,12 @@ const Posts = ({ posts }: IPosts) => {
 	return (
 		<div className="flex flex-col gap-5">
 			{posts.map(post => (
-				<Post key={post.uuid} {...post} />
+				<Post
+					key={post.uuid}
+					post={{
+						...post,
+					}}
+				/>
 			))}
 		</div>
 	);

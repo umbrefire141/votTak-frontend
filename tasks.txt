@@ -1,3 +1,17 @@
 rename from received to receiver in interface INotification
 make context and hook for socket
 If user is online, show online bar in user
+
+first user
+email: Amar53@amar.com;
+nickname: Amar54;
+firstName: Amar;
+lastName: Calmar;
+password: calmar228;
+
+last user;
+email: nick21@nick.com
+nickname: nick54;
+firstName: Nick;
+lastName: Watson;
+password: nick228;

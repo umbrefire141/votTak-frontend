@@ -24,6 +24,7 @@ interface UserState {
 	deleteAccount: () => void;
 	logout: () => void;
 	getMe: () => void;
+	clearUserState: () => void;
 }
 
 export const useUserStore = create<UserState>(set => ({
@@ -118,5 +119,9 @@ export const useUserStore = create<UserState>(set => ({
 		} finally {
 			set({ loading: false });
 		}
+	},
+
+	clearUserState: () => {
+		set({ error: null, user: null });
 	},
 }));

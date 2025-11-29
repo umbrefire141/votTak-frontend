@@ -107,7 +107,7 @@ const Info = ({
 						</Link>
 					</div>
 				)}
-				{info?.languages && (
+				{info && info.languages.length > 0 && (
 					<div className="inline-flex justify-between gap-3 items-center">
 						<p className="text-gray-500 font-medium">Languages:</p>
 						<Link
@@ -118,7 +118,7 @@ const Info = ({
 						</Link>
 					</div>
 				)}
-				{info?.hobbies && (
+				{info && info.hobbies.length > 0 && (
 					<div className="inline-flex justify-between gap-3 items-center">
 						<p className="text-gray-500 font-medium">Hobbies:</p>
 						<Link
@@ -151,7 +151,7 @@ const Info = ({
 						</Link>
 					</div>
 				)}
-				{info?.favorite_games && (
+				{info && info.favorite_games.length > 0 && (
 					<div className="inline-flex justify-between gap-3 items-center">
 						<p className="text-gray-500 font-medium">favorite Games:</p>
 						<Link
@@ -162,7 +162,7 @@ const Info = ({
 						</Link>
 					</div>
 				)}
-				{info?.favorite_movies && (
+				{info && info.favorite_movies.length > 0 && (
 					<div className="inline-flex justify-between gap-3 items-center">
 						<p className="text-gray-500 font-medium">Favorite movies:</p>
 						<Link

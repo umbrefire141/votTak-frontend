@@ -13,25 +13,25 @@ const ProfileItems = () => {
 
 	return (
 		<>
-			<DropdownMenuItem>
+			<DropdownMenuItem className="rounded-lg focus:bg-accent">
 				<Link
 					to={`profile/${user?.uuid}`}
-					className="flex items-center gap-1 w-full"
+					className="flex items-center gap-3 w-full py-1"
 				>
-					<BiUser className="w-6 h-6" />
-					Profile
+					<BiUser className="w-4 h-4" />
+					<span className="text-sm">Profile</span>
 				</Link>
 			</DropdownMenuItem>
-			<DropdownMenuItem>
-				<Link to="/settings" className="flex items-center gap-1 w-full">
-					<IoSettings className="w-6 h-6" />
-					Settings
+			<DropdownMenuItem className="rounded-lg focus:bg-accent">
+				<Link to="/settings" className="flex items-center gap-3 w-full py-1">
+					<IoSettings className="w-4 h-4" />
+					<span className="text-sm">Settings</span>
 				</Link>
 			</DropdownMenuItem>
-			<DropdownMenuItem>
+			<DropdownMenuItem className="rounded-lg focus:bg-accent">
 				<ChangeTheme theme={theme} />
 			</DropdownMenuItem>
-			<DropdownMenuItem>
+			<DropdownMenuItem className="rounded-lg focus:bg-accent">
 				<LogoutButton />
 			</DropdownMenuItem>
 		</>

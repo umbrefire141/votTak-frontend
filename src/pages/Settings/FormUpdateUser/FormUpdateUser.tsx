@@ -1,5 +1,6 @@
 import { useUserStore } from '@/shared/model/user.store';
 import { Button } from '@/shared/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/ui/card';
 import {
 	Form,
 	FormControl,
@@ -32,66 +33,77 @@ const FormUpdateUser = () => {
 	}
 
 	return (
-		<div>
-			<h3 className="text-xl font-medium mb-4">Update user</h3>
-			<Form {...form}>
-				<form className="space-y-5" onSubmit={form.handleSubmit(onSubmit)}>
-					<FormField
-						control={form.control}
-						name="email"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Email</FormLabel>
-								<FormControl>
-									<Input type="email" placeholder="Email" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="nickname"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Nickname</FormLabel>
-								<FormControl>
-									<Input placeholder="Nickname" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="firstname"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Firstname</FormLabel>
-								<FormControl>
-									<Input placeholder="Firstname" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="lastname"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Lastname</FormLabel>
-								<FormControl>
-									<Input placeholder="Lastname" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<Button className="w-full">Update</Button>
-				</form>
-			</Form>
-		</div>
+		<Card className="card-hover">
+			<CardHeader>
+				<CardTitle className="text-lg font-semibold">Update Profile</CardTitle>
+				<CardDescription className="text-sm">
+					Update your personal information
+				</CardDescription>
+			</CardHeader>
+			<CardContent>
+				<Form {...form}>
+					<form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
+						<div className="grid grid-cols-2 gap-4">
+							<FormField
+								control={form.control}
+								name="firstname"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="text-sm font-medium">First name</FormLabel>
+										<FormControl>
+											<Input placeholder="John" className="h-10" {...field} />
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="lastname"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="text-sm font-medium">Last name</FormLabel>
+										<FormControl>
+											<Input placeholder="Doe" className="h-10" {...field} />
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</div>
+						<FormField
+							control={form.control}
+							name="email"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel className="text-sm font-medium">Email</FormLabel>
+									<FormControl>
+										<Input type="email" placeholder="john@example.com" className="h-10" {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="nickname"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel className="text-sm font-medium">Nickname</FormLabel>
+									<FormControl>
+										<Input placeholder="johndoe" className="h-10" {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<Button type="submit" className="w-full h-10">
+							Save Changes
+						</Button>
+					</form>
+				</Form>
+			</CardContent>
+		</Card>
 	);
 };
 

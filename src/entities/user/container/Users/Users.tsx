@@ -5,15 +5,17 @@ import { IUsersComponent } from './Users.interface';
 
 const Users = ({ users }: IUsersComponent) => {
 	return (
-		<div>
-			<h4 className="text-lg font-bold mb-5">Users</h4>
-			<div className="flex flex-col gap-3">
+		<div className="p-4">
+			<h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+				Users
+			</h4>
+			<div className="flex flex-col gap-1">
 				{users &&
 					users.map(user => (
 						<Link
 							key={user.uuid}
 							to={`/profile/${user.uuid}`}
-							className="block border-b-2 p-4 transition-colors hover:bg-slate-50"
+							className="block p-2 rounded-lg transition-all duration-200 hover:bg-accent"
 						>
 							<AvatarWithUserInfo
 								avatarSrc={user?.avatar?.photo?.image}

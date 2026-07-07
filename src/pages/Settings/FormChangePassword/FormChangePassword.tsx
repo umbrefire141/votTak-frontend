@@ -1,6 +1,7 @@
 import TextError from '@/shared/components/TextError.tsx';
 import { useUserStore } from '@/shared/model/user.store.ts';
 import { Button } from '@/shared/ui/button.tsx';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/ui/card';
 import {
 	Form,
 	FormControl,
@@ -41,50 +42,59 @@ const FormChangePassword = () => {
 	};
 
 	return (
-		<div>
-			<h3 className="text-xl font-medium mb-4">Change password</h3>
-			<Form {...form}>
-				<form className="space-y-5" onSubmit={form.handleSubmit(onSubmit)}>
-					<FormField
-						control={form.control}
-						name="oldPassword"
-						render={({ field }) => (
-							<FormItem>
-								<FormControl>
-									<Input
-										type="password"
-										placeholder="Old password"
-										{...field}
-									/>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="newPassword"
-						render={({ field }) => (
-							<FormItem>
-								<FormControl>
-									<Input
-										type="password"
-										placeholder="New password"
-										{...field}
-									/>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					{isNotEqualPassword && <TextError>Passwords don't match</TextError>}
-					{error && <TextError>{error}</TextError>}
-					<Button className="w-full" type="submit">
-						Update
-					</Button>
-				</form>
-			</Form>
-		</div>
+		<Card className="card-hover">
+			<CardHeader>
+				<CardTitle className="text-lg font-semibold">Change Password</CardTitle>
+				<CardDescription className="text-sm">
+					Update your password to keep your account secure
+				</CardDescription>
+			</CardHeader>
+			<CardContent>
+				<Form {...form}>
+					<form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
+						<FormField
+							control={form.control}
+							name="oldPassword"
+							render={({ field }) => (
+								<FormItem>
+									<FormControl>
+										<Input
+											type="password"
+											placeholder="Current password"
+											className="h-10"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="newPassword"
+							render={({ field }) => (
+								<FormItem>
+									<FormControl>
+										<Input
+											type="password"
+											placeholder="New password"
+											className="h-10"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						{isNotEqualPassword && <TextError>Passwords don't match</TextError>}
+						{error && <TextError>{error}</TextError>}
+						<Button className="w-full h-10" type="submit">
+							Update Password
+						</Button>
+					</form>
+				</Form>
+			</CardContent>
+		</Card>
 	);
 };
 

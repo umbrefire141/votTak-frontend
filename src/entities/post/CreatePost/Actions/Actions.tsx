@@ -14,31 +14,38 @@ const Actions = ({
 }: IActionComponent) => {
 	return (
 		<>
-			<div className="flex justify-between items-center flex-wrap gap-5">
-				<AddImage setImages={setImages} />
+			<div className="flex justify-between items-center flex-wrap gap-3 pt-3 border-t border-border/50">
+				<div className="flex items-center gap-2">
+					<AddImage setImages={setImages} />
+					<Button
+						variant="ghost"
+						size="sm"
+						className="gap-1.5 text-muted-foreground hover:text-foreground"
+						onClick={() => setIsOpenedEmojiPanel(a => !a)}
+					>
+						<MdOutlineEmojiEmotions className="w-4 h-4" />
+						Emoji
+					</Button>
+				</div>
 				<Button
-					variant="ghost"
-					size="sm"
-					onClick={() => setIsOpenedEmojiPanel(a => !a)}
-				>
-					<MdOutlineEmojiEmotions className="w-5 h-5 mr-2" />
-					Emoji
-				</Button>
-				<Button
-					className="flex w-full  lg:max-w-28 lg:ml-auto"
+					className="px-6"
 					disabled={mutation.isLoading}
 					onClick={submitData}
 				>
 					Post
 				</Button>
 			</div>
-			<EmojiPicker
-				open={isOpenedEmojiPanel}
-				lazyLoadEmojis={true}
-				onEmojiClick={value => {
-					setValue(oldValue => oldValue + value.emoji);
-				}}
-			/>
+			{isOpenedEmojiPanel && (
+				<div className="mt-3">
+					<EmojiPicker
+						open={isOpenedEmojiPanel}
+						lazyLoadEmojis={true}
+						onEmojiClick={value => {
+							setValue(oldValue => oldValue + value.emoji);
+						}}
+					/>
+				</div>
+			)}
 		</>
 	);
 };

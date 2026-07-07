@@ -1,5 +1,6 @@
 import { useUserStore } from '@/shared/model/user.store';
 import { Button } from '@/shared/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/ui/card';
 import { Form, FormControl, FormField, FormItem } from '@/shared/ui/form';
 import {
 	Select,
@@ -28,36 +29,45 @@ const FormChangeLanguage = () => {
 	};
 
 	return (
-		<div>
-			<h3 className="text-xl font-medium mb-4">Change language</h3>
-			<Form {...form}>
-				<form className="space-y-5" onSubmit={form.handleSubmit(onSubmit)}>
-					<FormField
-						control={form.control}
-						name="language"
-						render={({ field }) => (
-							<FormItem>
-								<Select
-									onValueChange={field.onChange}
-									defaultValue={field.value}
-								>
-									<FormControl>
-										<SelectTrigger>
-											<SelectValue placeholder="Language" />
-										</SelectTrigger>
-									</FormControl>
-									<SelectContent>
-										<SelectItem value="rus">Russian</SelectItem>
-										<SelectItem value="eng">English</SelectItem>
-									</SelectContent>
-								</Select>
-							</FormItem>
-						)}
-					/>
-					<Button className="w-full">Change</Button>
-				</form>
-			</Form>
-		</div>
+		<Card className="card-hover">
+			<CardHeader>
+				<CardTitle className="text-lg font-semibold">Language</CardTitle>
+				<CardDescription className="text-sm">
+					Choose your preferred language
+				</CardDescription>
+			</CardHeader>
+			<CardContent>
+				<Form {...form}>
+					<form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
+						<FormField
+							control={form.control}
+							name="language"
+							render={({ field }) => (
+								<FormItem>
+									<Select
+										onValueChange={field.onChange}
+										defaultValue={field.value}
+									>
+										<FormControl>
+											<SelectTrigger className="h-10">
+												<SelectValue placeholder="Language" />
+											</SelectTrigger>
+										</FormControl>
+										<SelectContent>
+											<SelectItem value="rus">Russian</SelectItem>
+											<SelectItem value="eng">English</SelectItem>
+										</SelectContent>
+									</Select>
+								</FormItem>
+							)}
+						/>
+						<Button type="submit" className="w-full h-10">
+							Change Language
+						</Button>
+					</form>
+				</Form>
+			</CardContent>
+		</Card>
 	);
 };
 

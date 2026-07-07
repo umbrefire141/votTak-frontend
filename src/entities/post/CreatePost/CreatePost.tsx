@@ -30,12 +30,12 @@ const CreatePost = () => {
 	};
 
 	return (
-		<div className="mb-5 p-4 shadow-sm rounded-lg bg-card text-card-foreground border">
-			<h3 className="text-xl font-bold mb-4">Create Post</h3>
+		<div className="mb-5 p-5 rounded-xl bg-card text-card-foreground border border-border/50 shadow-soft card-hover">
+			<h3 className="text-lg font-bold mb-4 gradient-text">Create Post</h3>
 			<Images images={images} setImages={setImages} />
 			<Textarea
 				placeholder="What's on your mind?"
-				className="w-full h-24 mb-4"
+				className="w-full min-h-[100px] mb-4 resize-none bg-muted/30 border-0 focus-visible:ring-1 focus-visible:ring-primary/20 rounded-lg"
 				value={value}
 				onChange={e => setValue(e.target.value)}
 			/>

@@ -18,12 +18,12 @@ export default function ChatPage() {
 	}, [chat]);
 
 	return (
-		<Card className="flex justify-between mb-3 h-[600px]">
-			<div className="border-r-2 overflow-hidden flex-shrink flex-grow-0 flex-[30%] min-w-56">
-				<div className="p-4 pb-5">
+		<Card className="flex justify-between h-[calc(100vh-8rem)] min-h-[500px] overflow-hidden shadow-soft">
+			<div className="border-r border-border/50 overflow-hidden flex-shrink-0 flex-[30%] min-w-56 flex flex-col">
+				<div className="p-4 pb-3">
 					<Search />
 				</div>
-				<div className="border-t-2 h-full max-h-[516px] overflow-y-auto overflow-x-hidden">
+				<div className="flex-1 overflow-y-auto overflow-x-hidden">
 					<Chats />
 				</div>
 			</div>

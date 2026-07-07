@@ -24,12 +24,12 @@ const AddImage = ({ setImages }: IAddImageComponent) => {
 	};
 
 	return (
-		<Button variant="ghost" size="sm" className="relative">
-			<FaRegImage className="w-5 h-5 mr-2" />
-			Add image
+		<Button variant="ghost" size="sm" className="relative gap-1.5 text-muted-foreground hover:text-foreground">
+			<FaRegImage className="w-4 h-4" />
+			Image
 			<input
 				type="file"
-				className="absolute opacity-0 left-0 top-0 right-0 bottom-0 cursor-pointer"
+				className="absolute inset-0 opacity-0 cursor-pointer"
 				accept="image/*"
 				multiple={true}
 				onChange={setImage}

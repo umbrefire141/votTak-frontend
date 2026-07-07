@@ -6,4 +6,5 @@ export interface IAVatarWithUserInfo {
 	extraInfo?: string;
 	setAvatar?: boolean;
 	className?: string;
+	avatarSize?: 'sm' | 'md' | 'lg' | 'xl';
 }

@@ -31,16 +31,21 @@ const Like = ({ uuid, likes }: ILikeComponent) => {
 
 	return (
 		<button
-			className="cursor-pointer flex items-center gap-1 rounded-md p-1 "
+			className={clsx(
+				'cursor-pointer flex items-center gap-1.5 rounded-lg px-3 py-1.5 transition-all duration-200 hover:bg-accent active:scale-95',
+				{
+					['text-red-500']: active,
+					['text-muted-foreground hover:text-foreground']: !active,
+				}
+			)}
 			onClick={handleActionsPost}
 		>
 			<AiOutlineLike
-				className={clsx('w-6 h-6', {
-					['text-red-500']: active,
+				className={clsx('w-5 h-5', {
+					['fill-red-500']: active,
 				})}
 			/>
-			<p className="text-lg">{countLikes}</p>
-			<p className="text-base">Likes</p>
+			<span className="text-sm font-medium">{countLikes}</span>
 		</button>
 	);
 };

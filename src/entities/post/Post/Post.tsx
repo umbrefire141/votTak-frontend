@@ -44,7 +44,7 @@ const Post = ({
 	return (
 		<>
 			{repostedPost ? (
-				<Card>
+				<Card className="card-hover">
 					<CardHeader className="flex-row gap-4 items-start justify-between">
 						<AvatarWithUserInfo
 							avatarSrc={author?.avatar?.photo.image}
@@ -62,7 +62,7 @@ const Post = ({
 								onChange={e => setValue(e.target.value)}
 							/>
 						) : (
-							<p className="mb-3">{value}</p>
+							<p className="mb-3 leading-relaxed">{value}</p>
 						)}
 						{photos && (
 							<Images images={images} setImages={setImages} isEdit={isEdit} />
@@ -74,7 +74,7 @@ const Post = ({
 						)}
 					</CardContent>
 
-					<Card>
+					<Card className="mx-4 mb-4 border-border/30 bg-muted/20">
 						<CardHeader className="flex-row gap-4 items-start justify-between">
 							<AvatarWithUserInfo
 								avatarSrc={author?.avatar?.photo.image}
@@ -83,10 +83,10 @@ const Post = ({
 							/>
 						</CardHeader>
 						<CardContent>
-							<p className="mb-3">{value}</p>
+							<p className="mb-3 leading-relaxed">{value}</p>
 							{photos && <Images images={images} setImages={setImages} />}
 						</CardContent>
-						<CardFooter className="justify-between flex-wrap gap-2 lg:gap-5">
+						<CardFooter className="justify-between flex-wrap gap-2 lg:gap-5 border-t border-border/30 pt-4">
 							<div className="flex flex-wrap gap-3 lg:*:flex-nowrap lg:gap-5">
 								<Like uuid={uuid} likes={likes} />
 								<Comment
@@ -96,21 +96,12 @@ const Post = ({
 							</div>
 						</CardFooter>
 					</Card>
-					<CardFooter className="justify-between flex-wrap gap-2 lg:gap-5">
-						<div className="flex flex-wrap gap-3 lg:*:flex-nowrap lg:gap-5">
-							<Like uuid={uuid} likes={likes} />
-							<Comment
-								comments={comments.length}
-								setIsShownComments={setIsShownComments}
-							/>
-						</div>
-					</CardFooter>
 					{(isShownComments || comments.length > 0) && (
 						<Comments post_uuid={uuid} comments={comments} />
 					)}
 				</Card>
 			) : (
-				<Card>
+				<Card className="card-hover">
 					<CardHeader className="flex-row gap-4 items-start justify-between">
 						<AvatarWithUserInfo
 							avatarSrc={author?.avatar?.photo.image}
@@ -128,7 +119,7 @@ const Post = ({
 								onChange={e => setValue(e.target.value)}
 							/>
 						) : (
-							<p className="mb-3">{value}</p>
+							<p className="mb-3 leading-relaxed whitespace-pre-wrap">{value}</p>
 						)}
 						{photos && (
 							<Images images={images} setImages={setImages} isEdit={isEdit} />
@@ -139,7 +130,7 @@ const Post = ({
 							</Button>
 						)}
 					</CardContent>
-					<CardFooter className="justify-between flex-wrap gap-2 lg:gap-5">
+					<CardFooter className="justify-between flex-wrap gap-2 lg:gap-5 border-t border-border/50 pt-4">
 						<div className="flex flex-wrap gap-3 lg:*:flex-nowrap lg:gap-5">
 							<Like uuid={uuid} likes={likes} />
 							<Comment

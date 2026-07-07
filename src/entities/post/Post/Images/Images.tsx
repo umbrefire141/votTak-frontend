@@ -1,18 +1,15 @@
 import photoService from '@/shared/api/photo.service';
 import { apiServer } from '@/shared/consts/apiServer.const';
-import { Button } from '@/shared/ui/button';
 import { IImagesProps } from './Images.interface';
 
 const Images = ({ images, setImages, isEdit = false }: IImagesProps) => {
 	return (
-		<div className="mb-3 grid grid-cols-3 gap-4">
+		<div className="mb-3 grid grid-cols-2 gap-3">
 			{images.map(image => (
-				<div className="relative group" key={image.id}>
+				<div className="relative group overflow-hidden rounded-lg" key={image.id}>
 					{isEdit && (
-						<Button
-							variant="outline"
-							size="icon"
-							className="group-hover:opacity-100 opacity-0 transition-opacity absolute z-50 top-[-10px] right-[-10px] w-7 h-7"
+						<button
+							className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-all duration-200 w-7 h-7 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-red-500"
 							onClick={async () => {
 								setImages(images =>
 									images.filter(
@@ -22,14 +19,16 @@ const Images = ({ images, setImages, isEdit = false }: IImagesProps) => {
 								await photoService.deletePhoto(image.id);
 							}}
 						>
-							X
-						</Button>
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3">
+								<path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+							</svg>
+						</button>
 					)}
 
 					<img
 						src={`${apiServer}/${image.image}`}
 						alt={image.name}
-						className="w-full h-full"
+						className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
 					/>
 				</div>
 			))}

@@ -4,13 +4,13 @@ import { IFriendsComponent } from './Friends.interface';
 
 const Friends = ({ uuid, friends }: IFriendsComponent) => {
 	return (
-		<Card className="mb-2">
-			<CardHeader>
-				<CardTitle>Friends</CardTitle>
+		<Card className="card-hover">
+			<CardHeader className="pb-3">
+				<CardTitle className="text-base font-semibold">Friends</CardTitle>
 			</CardHeader>
-			<CardContent className="grid grid-cols-3 gap-4 p-5">
+			<CardContent className="grid grid-cols-3 gap-3">
 				{friends.length > 0 ? (
-					friends.map(friend =>
+					friends.slice(0, 9).map(friend =>
 						friend.userOf.uuid !== uuid ? (
 							<Friend
 								key={friend.id}
@@ -36,8 +36,8 @@ const Friends = ({ uuid, friends }: IFriendsComponent) => {
 						)
 					)
 				) : (
-					<div className="text-center w-full col-span-3 font-medium">
-						No friends
+					<div className="text-center w-full col-span-3 text-sm text-muted-foreground py-4">
+						No friends yet
 					</div>
 				)}
 			</CardContent>

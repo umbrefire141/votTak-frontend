@@ -13,11 +13,13 @@ import UpdateButton from './UpdateButton/UpdateButton';
 const Actions = ({ id, setIsEdit }: IActionsComponent) => {
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger className="outline-none bg-secondary p-2 transition-colors rounded-sm w-8 h-8 hover:bg-destructive">
-				<BsThreeDots />
+			<DropdownMenuTrigger className="outline-none p-1 transition-all duration-200 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground">
+				<BsThreeDots className="w-4 h-4" />
 			</DropdownMenuTrigger>
-			<DropdownMenuContent>
-				<DropdownMenuLabel>Actions</DropdownMenuLabel>
+			<DropdownMenuContent className="p-1.5 min-w-[140px]">
+				<DropdownMenuLabel className="px-2 py-1 text-xs font-medium text-muted-foreground">
+					Actions
+				</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				<UpdateButton setIsEdit={setIsEdit} />
 				<DeleteButton id={id} />

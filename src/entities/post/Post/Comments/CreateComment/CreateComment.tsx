@@ -24,17 +24,18 @@ const CreateComment = ({ post_uuid }: ICreateCommentProps) => {
 	};
 
 	return (
-		<div className="mb-4 border-b-2 pb-5">
-			<h3 className="text-lg font-bold mb-4">Create comment</h3>
+		<div>
 			<Textarea
-				placeholder="What's on your mind?"
-				className="w-full h-24 mb-4"
+				placeholder="Write a comment..."
+				className="w-full min-h-[60px] mb-3 resize-none bg-background border-border/50 focus-visible:ring-primary/20 rounded-lg text-sm"
 				value={value}
 				onChange={e => setValue(e.target.value as string)}
 			/>
-			<Button className="flex w-full max-w-28 ml-auto" onClick={submitData}>
-				Post
-			</Button>
+			<div className="flex justify-end">
+				<Button size="sm" className="px-4" onClick={submitData} disabled={!value.trim()}>
+					Post
+				</Button>
+			</div>
 		</div>
 	);
 };

@@ -1,5 +1,4 @@
 import postsService from '@/shared/api/posts.service';
-import { Button } from '@/shared/ui/button';
 import { DropdownMenuItem } from '@/shared/ui/dropdown-menu';
 import { MdDelete } from 'react-icons/md';
 import { useMutation, useQueryClient } from 'react-query';
@@ -16,15 +15,12 @@ const DeleteButton = ({ uuid }: IDeleteButtonComponent) => {
 	});
 
 	return (
-		<DropdownMenuItem className="p-0">
-			<Button
-				variant="ghost"
-				size="sm"
-				onClick={() => removePostMutation.mutate()}
-			>
-				<MdDelete className="w-5 h-5 mr-2" />
-				Delete
-			</Button>
+		<DropdownMenuItem
+			className="cursor-pointer rounded-lg flex items-center gap-3 px-2 py-2 text-sm text-destructive focus:bg-destructive/10"
+			onClick={() => removePostMutation.mutate()}
+		>
+			<MdDelete className="w-4 h-4" />
+			Delete
 		</DropdownMenuItem>
 	);
 };

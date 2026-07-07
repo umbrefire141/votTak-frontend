@@ -1,5 +1,4 @@
 import { INotification } from '@/shared/types/Notification.interface';
-import { DropdownMenuItem } from '@/shared/ui/dropdown-menu';
 import NotificationItem from './NotificationItem';
 
 type NotificationsItemsType = {
@@ -8,17 +7,21 @@ type NotificationsItemsType = {
 
 const NotificationItems = ({ notifications }: NotificationsItemsType) => {
 	return (
-		<>
-			<DropdownMenuItem className="block">
-				{notifications.map(notification => (
+		<div className="max-h-72 overflow-y-auto">
+			{notifications.length > 0 ? (
+				notifications.map(notification => (
 					<NotificationItem
 						key={notification.id}
 						message={notification.message}
 						created_at={notification.created_at}
 					/>
-				))}
-			</DropdownMenuItem>
-		</>
+				))
+			) : (
+				<div className="text-sm text-muted-foreground text-center py-4">
+					No notifications yet
+				</div>
+			)}
+		</div>
 	);
 };
 

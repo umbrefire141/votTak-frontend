@@ -8,13 +8,13 @@ const Chats = () => {
 	const { data: chats } = useQuery('chats', chatService.getChats);
 
 	return (
-		<div className="overflow-y-auto overflow-x-hidden mt-5 flex flex-col gap-5">
+		<div className="flex flex-col gap-0.5 px-2">
 			{chats &&
 				chats.map(chat => (
 					<Link
 						key={chat.id}
 						to={`?chat=${chat.id}`}
-						className="w-full cursor-pointer inline-flex items-center whitespace-nowrap  transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent/30 hover:text-accent-foreground h-16 rounded-md px-5 justify-start gap-4 border-b-1"
+						className="w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 hover:bg-accent"
 					>
 						<AvatarWithUserInfo
 							avatarSrc={chat.users[chat.users.length - 1].avatar?.photo.image}
@@ -23,6 +23,7 @@ const Chats = () => {
 								chat.users[chat.users.length - 1].lastname
 							)}
 							extraInfo={chat.messages[chat.messages.length - 1]?.message}
+							avatarSize="md"
 						/>
 					</Link>
 				))}

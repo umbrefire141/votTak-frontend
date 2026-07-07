@@ -17,11 +17,13 @@ const Menu = ({ uuid }: IMenu) => {
 
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger className="outline-none bg-secondary p-2 transition-colors rounded-sm w-10 h-10 hover:bg-slate-300">
-				<BsThreeDots className="inline w-5 h-5" />
+			<DropdownMenuTrigger className="outline-none p-1.5 transition-all duration-200 rounded-lg hover:bg-accent text-muted-foreground hover:text-foreground">
+				<BsThreeDots className="w-5 h-5" />
 			</DropdownMenuTrigger>
-			<DropdownMenuContent>
-				<DropdownMenuLabel>Actions</DropdownMenuLabel>
+			<DropdownMenuContent className="p-1.5 min-w-[160px]">
+				<DropdownMenuLabel className="px-2 py-1 text-xs font-medium text-muted-foreground">
+					Actions
+				</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				{user?.uuid === uuid ? (
 					<>

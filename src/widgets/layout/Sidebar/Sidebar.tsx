@@ -1,35 +1,37 @@
-import Logo from '@/shared/components/Logo';
 import { Button } from '@/shared/ui/button';
 import {
 	Sheet,
 	SheetContent,
-	SheetDescription,
 	SheetHeader,
 	SheetTitle,
 	SheetTrigger,
 } from '@/shared/ui/sheet';
+import { BiMenu } from 'react-icons/bi';
 import SidebarLinks from './SidebarLinks';
 
 const Sidebar = () => {
 	return (
 		<>
-			<aside className="flex-auto items-end p-4 min-h-16 mb-6 min-w-40 max-w-52 hidden lg:block">
-				<SidebarLinks />
+			<aside className="sticky top-24 h-fit flex-auto p-4 min-w-44 max-w-52 hidden lg:block">
+				<div className="rounded-xl bg-card border border-border/50 shadow-soft p-3">
+					<SidebarLinks />
+				</div>
 			</aside>
 			<Sheet>
-				<SheetTrigger asChild className="fixed z-50 bottom-3 left-2">
-					<Button variant="outline">+</Button>
+				<SheetTrigger asChild className="fixed z-50 bottom-4 left-4 lg:hidden">
+					<Button
+						variant="default"
+						size="icon"
+						className="w-12 h-12 rounded-full shadow-soft-lg"
+					>
+						<BiMenu className="w-5 h-5" />
+					</Button>
 				</SheetTrigger>
-				<SheetContent side="left">
-					<SheetHeader>
-						<SheetTitle>Menu</SheetTitle>
-						<SheetDescription>
-							<Logo />
-						</SheetDescription>
+				<SheetContent side="left" className="p-4">
+					<SheetHeader className="mb-6">
+						<SheetTitle className="gradient-text text-xl">Menu</SheetTitle>
 					</SheetHeader>
-					<div className="grid gap-4 py-4">
-						<SidebarLinks />
-					</div>
+					<SidebarLinks />
 				</SheetContent>
 			</Sheet>
 		</>

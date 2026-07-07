@@ -49,15 +49,43 @@ const AuthRegistrationForm = () => {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+				<div className="grid grid-cols-2 gap-3">
+					<FormField
+						control={form.control}
+						name="firstname"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel className="text-sm font-medium">First name</FormLabel>
+								<FormControl>
+									<Input placeholder="John" className="h-11" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="lastname"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel className="text-sm font-medium">Last name</FormLabel>
+								<FormControl>
+									<Input placeholder="Doe" className="h-11" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+				</div>
 				<FormField
 					control={form.control}
 					name="email"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Email</FormLabel>
+							<FormLabel className="text-sm font-medium">Email</FormLabel>
 							<FormControl>
-								<Input type="email" placeholder="Email" {...field} />
+								<Input type="email" placeholder="john@example.com" className="h-11" {...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -68,35 +96,9 @@ const AuthRegistrationForm = () => {
 					name="nickname"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Nickname</FormLabel>
+							<FormLabel className="text-sm font-medium">Nickname</FormLabel>
 							<FormControl>
-								<Input placeholder="nickname" {...field} />
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				<FormField
-					control={form.control}
-					name="firstname"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Firstname</FormLabel>
-							<FormControl>
-								<Input placeholder="Firstname" {...field} />
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				<FormField
-					control={form.control}
-					name="lastname"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Lastname</FormLabel>
-							<FormControl>
-								<Input placeholder="Lastname" {...field} />
+								<Input placeholder="johndoe" className="h-11" {...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -107,9 +109,9 @@ const AuthRegistrationForm = () => {
 					name="password"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Password</FormLabel>
+							<FormLabel className="text-sm font-medium">Password</FormLabel>
 							<FormControl>
-								<Input type="password" placeholder="Password" {...field} />
+								<Input type="password" placeholder="Create a password" className="h-11" {...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -120,11 +122,12 @@ const AuthRegistrationForm = () => {
 					name="confirmedPassword"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Confirm password</FormLabel>
+							<FormLabel className="text-sm font-medium">Confirm password</FormLabel>
 							<FormControl>
 								<Input
 									type="password"
-									placeholder="Confirm password"
+									placeholder="Confirm your password"
+									className="h-11"
 									{...field}
 								/>
 							</FormControl>
@@ -134,15 +137,18 @@ const AuthRegistrationForm = () => {
 				/>
 				{isNotEqualPassword && <TextError>Passwords don't match</TextError>}
 				{error && <TextError>{error}</TextError>}
-				<Button type="submit" className="w-full">
+				<Button type="submit" className="w-full h-11 text-base font-semibold">
 					Sign up
 				</Button>
-				<Link
-					to="/auth/sign-in"
-					className="block text-blue-500 transition-colors hover:text-blue-700"
-				>
-					If you have an account, sign in
-				</Link>
+				<p className="text-center text-sm text-muted-foreground">
+					Already have an account?{' '}
+					<Link
+						to="/auth/sign-in"
+						className="text-primary font-semibold hover:text-primary/80 transition-colors"
+					>
+						Sign in
+					</Link>
+				</p>
 			</form>
 		</Form>
 	);

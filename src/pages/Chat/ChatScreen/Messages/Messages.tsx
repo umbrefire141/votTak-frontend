@@ -7,27 +7,34 @@ const Messages = ({ messages }: IMessagesComponent) => {
 	const { user } = useUserStore();
 
 	return (
-		<div className="w-full overflow-y-auto overflow-x-hidden flex flex-col">
+		<div className="w-full overflow-y-auto overflow-x-hidden flex flex-col p-4 gap-2">
 			{messages &&
-				messages.map(message => (
-					<div
-						key={message.id}
-						className={clsx('flex flex-col gap-2 p-4 whitespace-pre-wrap', {
-							['items-end']: user?.nickname === message.user.nickname,
-							['items-start']: user?.nickname !== message.user.nickname,
-						})}
-					>
-						<div className={'flex gap-3 items-center'}>
-							<Avatar className="w-11 h-11">
+				messages.map(message => {
+					const isOwn = user?.nickname === message.user.nickname;
+					return (
+						<div
+							key={message.id}
+							className={clsx('flex gap-2 max-w-[80%]', {
+								['self-end flex-row-reverse']: isOwn,
+							})}
+						>
+							<Avatar className="w-8 h-8 mt-1 flex-shrink-0">
 								<AvatarImage src={message.user.avatar?.photo?.image} />
-								<AvatarFallback></AvatarFallback>
+								<AvatarFallback className="bg-primary/10 text-primary text-xs">
+									{message.user.firstname?.[0]}
+								</AvatarFallback>
 							</Avatar>
-							<div className="bg-accent p-3 rounded-md max-w-xs">
-								<div>{message.message}</div>
+							<div
+								className={clsx('px-4 py-2.5 rounded-2xl text-sm leading-relaxed', {
+									['bg-gradient-to-r from-primary to-purple-500 text-white rounded-tr-sm']: isOwn,
+									['bg-accent text-foreground rounded-tl-sm']: !isOwn,
+								})}
+							>
+								{message.message}
 							</div>
 						</div>
-					</div>
-				))}
+					);
+				})}
 		</div>
 	);
 };

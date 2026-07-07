@@ -36,10 +36,10 @@ const ChatScreen = ({ chatId }: IChatScreenComponent) => {
 	}, [socket, chatId]);
 
 	return (
-		<div className="flex-1 overflow-hidden">
+		<div className="flex-1 flex flex-col overflow-hidden">
 			{chat && user ? (
 				<>
-					<div className="border-b-2 p-4">
+					<div className="border-b border-border/50 px-5 py-3">
 						<AvatarWithUserInfo
 							avatarSrc={chat.users[chat.users.length - 1].avatar?.photo?.image}
 							fullName={formatName(
@@ -47,15 +47,18 @@ const ChatScreen = ({ chatId }: IChatScreenComponent) => {
 								chat.users[chat.users.length - 1].lastname
 							)}
 							extraInfo={connected ? 'Online' : 'Offline'}
+							avatarSize="md"
 						/>
 					</div>
-					<div className="w-full h-full max-h-[516px] overflow-y-auto overflow-x-hidden flex justify-between flex-col">
+					<div className="flex-1 overflow-y-auto overflow-x-hidden flex flex-col justify-between">
 						<Messages messages={messages} />
 						<WriteMessage chatId={chatId} user_uuid={user.uuid} />
 					</div>
 				</>
 			) : (
-				<div>Some error</div>
+				<div className="flex items-center justify-center h-full text-muted-foreground">
+					Some error
+				</div>
 			)}
 		</div>
 	);

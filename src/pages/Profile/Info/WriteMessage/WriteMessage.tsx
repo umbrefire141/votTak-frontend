@@ -32,25 +32,26 @@ const WriteMessage = ({
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button variant="secondary" title="Write a message">
-					<BiMessage className="w-5 h-5" />
+				<Button variant="outline" size="icon" title="Write a message" className="w-9 h-9">
+					<BiMessage className="w-4 h-4" />
 				</Button>
 			</DialogTrigger>
-			<DialogContent className="flex flex-col sm:max-w-[425px]">
+			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>Write a message</DialogTitle>
+					<DialogTitle>Send a message</DialogTitle>
 					<DialogDescription>
-						{formatName(firstname, lastname)}
+						To {formatName(firstname, lastname)}
 					</DialogDescription>
 				</DialogHeader>
 				<Textarea
-					className="col-span-3"
+					placeholder="Write your message..."
+					className="min-h-[100px] resize-none"
 					value={message}
 					onChange={e => setMessage(e.target.value)}
 				/>
 				<DialogFooter>
-					<Button type="submit" onClick={createChat}>
-						Send
+					<Button onClick={createChat} disabled={!message.trim()}>
+						Send message
 					</Button>
 				</DialogFooter>
 			</DialogContent>

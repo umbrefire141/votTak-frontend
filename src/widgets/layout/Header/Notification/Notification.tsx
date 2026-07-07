@@ -45,18 +45,14 @@ const Notification = () => {
 	return (
 		<div>
 			<DropdownMenu>
-				<DropdownMenuTrigger className="cursor-pointer rounded-md p-2 ">
-					<IoNotificationsOutline className="stroke-black w-8 h-8 dark:stroke-slate-100" />
+				<DropdownMenuTrigger className="cursor-pointer rounded-xl p-2.5 transition-all duration-200 hover:bg-accent hover:scale-105 active:scale-95">
+					<IoNotificationsOutline className="w-5 h-5 text-foreground" />
 				</DropdownMenuTrigger>
-				<DropdownMenuContent className="min-w-80">
-					<DropdownMenuLabel className="flex items-center justify-between gap-2">
-						<div className="font-bold">Notifications</div>
-						<Button
-							className="text-blue-500 inline p-0
-						"
-							variant="link"
-						>
-							See more...
+				<DropdownMenuContent className="min-w-80 p-2" align="end">
+					<DropdownMenuLabel className="flex items-center justify-between gap-2 px-2 py-1.5">
+						<div className="font-bold text-base">Notifications</div>
+						<Button className="text-primary p-0 h-auto" variant="link" size="sm">
+							See more
 						</Button>
 					</DropdownMenuLabel>
 					<DropdownMenuSeparator />

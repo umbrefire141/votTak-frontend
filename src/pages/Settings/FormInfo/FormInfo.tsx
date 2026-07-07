@@ -1,6 +1,7 @@
 import { formInfoUserSchema } from '@/pages/Settings/FormInfo/formInfoUser.schema';
 import { useUserStore } from '@/shared/model/user.store';
 import { Button } from '@/shared/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/ui/card';
 import {
 	Form,
 	FormControl,
@@ -55,18 +56,23 @@ const FormInfo = () => {
 	};
 
 	return (
-		<div>
-			<h3 className="text-xl font-medium mb-4">Change info</h3>
-			<Form {...form}>
-				<form className="space-y-5" onSubmit={form.handleSubmit(onSubmit)}>
+		<Card className="card-hover">
+			<CardHeader>
+				<CardTitle className="text-lg font-semibold">Personal Info</CardTitle>
+				<CardDescription className="text-sm">
+					Share some information about yourself
+				</CardDescription>
+			</CardHeader>
+			<CardContent>
+				<Form {...form}>
+					<form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
+						<div className="grid grid-cols-2 gap-4">
 					<FormField
 						control={form.control}
 						name="currentCity"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel className="block">
-									Choose city, where you live currently
-								</FormLabel>
+								<FormLabel className="text-sm font-medium">Current City</FormLabel>
 								<SetCity field={field} setValue={form.setValue} />
 							</FormItem>
 						)}
@@ -76,110 +82,116 @@ const FormInfo = () => {
 						name="hometown"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel className="block">
-									Choose city, where you come from
-								</FormLabel>
+								<FormLabel className="text-sm font-medium">Hometown</FormLabel>
 								<SetCity field={field} setValue={form.setValue} />
 							</FormItem>
 						)}
 					/>
-					<FormField
-						control={form.control}
-						name="description"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Description</FormLabel>
-								<FormControl>
-									<Input placeholder="Description" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="occupation"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>You're occupation</FormLabel>
-								<FormControl>
-									<Input placeholder="Occupation" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="favorite_games"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Favorite games</FormLabel>
-								<FormControl>
-									<Input placeholder="half-life,the witcher" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="favorite_movies"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Favorite movies</FormLabel>
-								<FormControl>
-									<Input placeholder="star wars,friends" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="hobbies"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Hobbies</FormLabel>
-								<FormControl>
-									<Input placeholder="programming,fishing" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="languages"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Languages</FormLabel>
-								<FormControl>
-									<Input placeholder="english,japanese" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="birth"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Birth</FormLabel>
-								<FormControl>
-									<DatePickerForm field={field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<Button type="submit" className="w-full">
-						Update
-					</Button>
-				</form>
-			</Form>
-		</div>
+						</div>
+						<div className="grid grid-cols-2 gap-4">
+							<FormField
+								control={form.control}
+								name="occupation"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="text-sm font-medium">Occupation</FormLabel>
+										<FormControl>
+											<Input placeholder="Software Engineer" className="h-10" {...field} />
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="birth"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="text-sm font-medium">Birth</FormLabel>
+										<FormControl>
+											<DatePickerForm field={field} />
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</div>
+						<FormField
+							control={form.control}
+							name="description"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel className="text-sm font-medium">Description</FormLabel>
+									<FormControl>
+										<Input placeholder="Tell us about yourself" className="h-10" {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<div className="grid grid-cols-2 gap-4">
+							<FormField
+								control={form.control}
+								name="languages"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="text-sm font-medium">Languages</FormLabel>
+										<FormControl>
+											<Input placeholder="english, japanese" className="h-10" {...field} />
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="hobbies"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="text-sm font-medium">Hobbies</FormLabel>
+										<FormControl>
+											<Input placeholder="programming, fishing" className="h-10" {...field} />
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</div>
+						<div className="grid grid-cols-2 gap-4">
+							<FormField
+								control={form.control}
+								name="favorite_games"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="text-sm font-medium">Favorite Games</FormLabel>
+										<FormControl>
+											<Input placeholder="half-life, the witcher" className="h-10" {...field} />
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="favorite_movies"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="text-sm font-medium">Favorite Movies</FormLabel>
+										<FormControl>
+											<Input placeholder="star wars, friends" className="h-10" {...field} />
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</div>
+						<Button type="submit" className="w-full h-10">
+							Save Info
+						</Button>
+					</form>
+				</Form>
+			</CardContent>
+		</Card>
 	);
 };
 

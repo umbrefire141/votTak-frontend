@@ -47,15 +47,15 @@ const AuthLoginForm = () => {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
 				<FormField
 					control={form.control}
 					name="email"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Email</FormLabel>
+							<FormLabel className="text-sm font-medium">Email</FormLabel>
 							<FormControl>
-								<Input type="email" placeholder="Email" {...field} />
+								<Input type="email" placeholder="Enter your email" className="h-11" {...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -66,9 +66,9 @@ const AuthLoginForm = () => {
 					name="password"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Password</FormLabel>
+							<FormLabel className="text-sm font-medium">Password</FormLabel>
 							<FormControl>
-								<Input type="password" placeholder="password" {...field} />
+								<Input type="password" placeholder="Enter your password" className="h-11" {...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -79,11 +79,12 @@ const AuthLoginForm = () => {
 					name="confirmedPassword"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Confirm password</FormLabel>
+							<FormLabel className="text-sm font-medium">Confirm password</FormLabel>
 							<FormControl>
 								<Input
 									type="password"
-									placeholder="confirm password"
+									placeholder="Confirm your password"
+									className="h-11"
 									{...field}
 								/>
 							</FormControl>
@@ -93,15 +94,18 @@ const AuthLoginForm = () => {
 				/>
 				{isNotEqualPassword && <TextError>Passwords don't match</TextError>}
 				{error && <TextError>{error}</TextError>}
-				<Button type="submit" className="block w-full">
+				<Button type="submit" className="w-full h-11 text-base font-semibold">
 					Sign in
 				</Button>
-				<Link
-					to="/auth/sign-up"
-					className="block text-blue-500 transition-colors hover:text-blue-700"
-				>
-					If you don't have an account, sign up
-				</Link>
+				<p className="text-center text-sm text-muted-foreground">
+					Don't have an account?{' '}
+					<Link
+						to="/auth/sign-up"
+						className="text-primary font-semibold hover:text-primary/80 transition-colors"
+					>
+						Sign up
+					</Link>
+				</p>
 			</form>
 		</Form>
 	);

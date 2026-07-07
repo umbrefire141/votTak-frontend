@@ -1,17 +1,14 @@
-import { Button } from '@/shared/ui/button';
-import { DropdownMenuItem } from '@radix-ui/react-dropdown-menu';
+import { DropdownMenuItem } from '@/shared/ui/dropdown-menu';
 import { BiHide } from 'react-icons/bi';
 import { IHideButtonComponent } from './HideButton.interface';
 
-const HideButton = ({ uuid }: IHideButtonComponent) => {
-	console.log(uuid);
-
+const HideButton = ({ uuid: _uuid }: IHideButtonComponent) => {
 	return (
-		<DropdownMenuItem className="p-0">
-			<Button variant="ghost" size="sm">
-				<BiHide className="w-5 h-5 mr-2" />
-				Hide
-			</Button>
+		<DropdownMenuItem
+			className="cursor-pointer rounded-lg flex items-center gap-3 px-2 py-2 text-sm focus:bg-accent"
+		>
+			<BiHide className="w-4 h-4" />
+			Hide
 		</DropdownMenuItem>
 	);
 };

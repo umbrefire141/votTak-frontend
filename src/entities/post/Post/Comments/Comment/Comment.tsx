@@ -31,8 +31,8 @@ const Comment = ({ comment }: ICommentProps) => {
 	};
 
 	return (
-		<div className="border-b-2 pb-3">
-			<div className="flex justify-between items-start">
+		<div className="flex gap-3">
+			<div className="flex-shrink-0">
 				<AvatarWithUserInfo
 					avatarSrc={undefined}
 					fullName={formatName(
@@ -40,23 +40,40 @@ const Comment = ({ comment }: ICommentProps) => {
 						comment.author.lastname
 					)}
 					extraInfo={timeSince(comment.created_at)}
-					className="mb-4"
+					avatarSize="sm"
+					sizeTitle="sm"
 				/>
-				<Actions id={comment.id} setIsEdit={setIsEdit} />
 			</div>
-			{isEdit ? (
-				<>
-					<Textarea
-						placeholder="What's on your mind?"
-						className="w-full h-24 mb-4"
-						value={value}
-						onChange={e => setValue(e.target.value)}
-					/>
-					<Button onClick={submitData}>Update</Button>
-				</>
-			) : (
-				<p>{value}</p>
-			)}
+			<div className="flex-1 min-w-0">
+				{isEdit ? (
+					<>
+						<Textarea
+							placeholder="Edit comment..."
+							className="w-full min-h-[60px] mb-2 resize-none bg-background border-border/50 focus-visible:ring-primary/20 rounded-lg text-sm"
+							value={value}
+							onChange={e => setValue(e.target.value)}
+						/>
+						<div className="flex gap-2 justify-end">
+							<Button size="sm" variant="ghost" onClick={() => setIsEdit(false)}>
+								Cancel
+							</Button>
+							<Button size="sm" onClick={submitData}>
+								Update
+							</Button>
+						</div>
+					</>
+				) : (
+					<div className="bg-accent/50 rounded-2xl px-4 py-2.5">
+						<div className="flex items-center justify-between gap-2 mb-1">
+							<span className="text-sm font-semibold">
+								{formatName(comment.author.firstname, comment.author.lastname)}
+							</span>
+							<Actions id={comment.id} setIsEdit={setIsEdit} />
+						</div>
+						<p className="text-sm leading-relaxed">{value}</p>
+					</div>
+				)}
+			</div>
 		</div>
 	);
 };
